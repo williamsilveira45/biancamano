@@ -1,0 +1,13 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.vuetable th {
+    padding: 8px 15px;
+    text-align: left;
+    background-color: #FAFAFA;
+}
+.vuetable-body td {
+    padding: 15px;
+    text-align: left;
+}
