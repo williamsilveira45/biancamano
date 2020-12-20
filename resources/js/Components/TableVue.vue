@@ -16,9 +16,13 @@
                                   noDataTemplate="Sem registros"
                                   @vuetable:pagination-data="onPaginationData"
                         >
-
-                            <template v-for="(slot, name) in $slots" :slot="name">
+                            <!-- slots -->
+                            <template v-for="(slot, name) in $scopedSlots" :slot="name">
                                 <slot :name="name"></slot>
+                            </template>
+                            <!-- scoped slots -->
+                            <template v-for="(slot, name) in $scopedSlots" :slot="name" slot-scope="vuetableProps">
+                                <slot :name="name" :row="vuetableProps.rowData"></slot>
                             </template>
                         </vuetable>
                     </div>

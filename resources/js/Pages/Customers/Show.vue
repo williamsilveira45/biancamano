@@ -18,9 +18,9 @@
                         apiUrl="/customers/json"
                         :fields="fields"
                     >
-                        <template v-slot:actions>
-                            <jet-secondary-button @click.native="(row) => printRow(row)">
-                                PRINT
+                        <template slot="actions" slot-scope="{ row }">
+                            <jet-secondary-button @click.native="() => printRow(row)">
+                                Print
                             </jet-secondary-button>
                         </template>
                     </table-vue>
