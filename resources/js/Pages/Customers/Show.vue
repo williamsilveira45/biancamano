@@ -18,20 +18,11 @@
                         apiUrl="/customers/json"
                         :fields="fields"
                     >
-                        <template v-slot:actions>
-                            <div slot="active-scope" slot-scope="props">
-                                <p>Testing</p>
-                            </div>
+                        <template slot="actions" slot-scope="{ row }">
+                            <jet-secondary-button @click.native="() => printRow(row)">
+                                Print
+                            </jet-secondary-button>
                         </template>
-<!--                            <template slot="action-scope" slot-scope="props">-->
-<!--                                <div class="btn-group" role="group" aria-label="Basic example">-->
-<!--                                    <a :href="'/admin/users/'+props.rowData.id+'/edit'" type="button" class="btn btn-sm btn-warning">Editar</a>-->
-<!--        &lt;!&ndash;                                <delete-reg route="/admin/users/destroy"&ndash;&gt;-->
-<!--        &lt;!&ndash;                                            :rowid="props.rowData.id"&ndash;&gt;-->
-<!--        &lt;!&ndash;                                            @callback="refreshTable"&ndash;&gt;-->
-<!--        &lt;!&ndash;                                ></delete-reg>&ndash;&gt;-->
-<!--                                </div>-->
-<!--                            </template>-->
                     </table-vue>
                 </div>
             </div>
@@ -90,6 +81,9 @@ export default {
         formatDate (value) {
             if (value === null) return '-';
             return moment(value).format('DD/MM/YYYY HH:ss');
+        },
+        printRow (row) {
+            console.log(row);
         }
     }
 }

@@ -16,22 +16,14 @@
                                   noDataTemplate="Sem registros"
                                   @vuetable:pagination-data="onPaginationData"
                         >
-
-                            <!--            <template slot="active-scope" slot-scope="props">-->
-                            <!--                <switch-component :active="props.rowData.active"-->
-                            <!--                                  :rowid="props.rowData.id"-->
-                            <!--                                  route="/admin/users/active"-->
-                            <!--                ></switch-component>-->
-                            <!--            </template>-->
-                            <!--            <template slot="action-scope" slot-scope="props">-->
-                            <!--                <div class="btn-group" role="group" aria-label="Basic example">-->
-                            <!--                    <a :href="'/admin/users/'+props.rowData.id+'/edit'" type="button" class="btn btn-sm btn-warning">Editar</a>-->
-                            <!--                    <delete-reg route="/admin/users/destroy"-->
-                            <!--                                :rowid="props.rowData.id"-->
-                            <!--                                @callback="refreshTable"-->
-                            <!--                    ></delete-reg>-->
-                            <!--                </div>-->
-                            <!--            </template>-->
+                            <!-- slots -->
+                            <template v-for="(slot, name) in $scopedSlots" :slot="name">
+                                <slot :name="name"></slot>
+                            </template>
+                            <!-- scoped slots -->
+                            <template v-for="(slot, name) in $scopedSlots" :slot="name" slot-scope="vuetableProps">
+                                <slot :name="name" :row="vuetableProps.rowData"></slot>
+                            </template>
                         </vuetable>
                     </div>
                     <div class="flex mt-2">
