@@ -18,10 +18,10 @@
                         apiUrl="/customers/json"
                         :fields="fields"
                     >
-                        <template v-slot:actions>
-                            <div slot="active-scope" slot-scope="props">
-                                <p>Testing</p>
-                            </div>
+                        <template slot="actions" slot-scope="{ row }">
+                            <jet-secondary-button @click.native="() => printRow(row)">
+                                Print
+                            </jet-secondary-button>
                         </template>
 <!--                            <template slot="action-scope" slot-scope="props">-->
 <!--                                <div class="btn-group" role="group" aria-label="Basic example">-->
@@ -141,6 +141,9 @@ export default {
         formatDate (value) {
             if (value === null) return '-';
             return moment(value).format('DD/MM/YYYY HH:ss');
+        },
+        printRow (row) {
+            console.log(row);
         },
         createCustomer() {
 
