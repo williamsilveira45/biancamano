@@ -9,7 +9,7 @@
         <div class="py-5">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8">
-                    <jet-secondary-button @click.native="">
+                    <jet-secondary-button @click.native="modal=true">
                         Adicionar Cliente
                     </jet-secondary-button>
                     <br>
@@ -36,6 +36,48 @@
                 </div>
             </div>
         </div>
+        <dialog-modal :show="modal">
+            <template #title>
+                <h4>Novo Cliente</h4>
+            </template>
+            <template #content>
+                <form action="#" method="POST">
+                    <div>
+                        <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                            <div>
+                                <label for="about" class="block text-sm font-medium text-gray-700">
+                                    Nome do Cliente
+                                </label>
+                                <div class="mt-1">
+                                    <input type="text" v-model="form.name" id="name" class="form-input block w-full" />
+                                </div>
+                                <jet-input-error :message="form.error('name')" class="mt-2" />
+                            </div>
+                            <div>
+                                <label for="about" class="block text-sm font-medium text-gray-700">
+                                    CNPJ
+                                </label>
+                                <div class="mt-1">
+                                    <input type="text" v-mask="'### ### ###'" v-model="form.cnpj" id="cnpj" class="form-input block w-full" />
+                                </div>
+                                <jet-input-error :message="form.error('cnpj')" class="mt-2" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </template>
+            <template #footer>
+                <jet-action-message :on="form.recentlySuccessful" class="mr-3">
+                    Saved.
+                </jet-action-message>
+                <jet-secondary-button :class="{'float-left': true}" @click.native="modal = false">
+                    Fechar
+                </jet-secondary-button>
+                <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    Adicionar
+                </jet-button>
+            </template>
+        </dialog-modal>
     </app-layout>
 </template>
 
@@ -46,22 +88,31 @@ import Welcome from '@/Jetstream/Welcome'
 import JetSecondaryButton from '@/Jetstream/SecondaryButton'
 import TableVue from "@/Components/TableVue";
 import moment from 'moment';
+import DialogModal from "@/Jetstream/DialogModal";
+import JetButton from "@/Jetstream/Button";
+import JetActionMessage from "@/Jetstream/ActionMessage";
+import JetInputError from "@/Jetstream/InputError";
 
 export default {
-    props: ['customers'],
     components: {
         AppLayout,
         Welcome,
         JetSecondaryButton,
-        TableVue
+        TableVue,
+        DialogModal,
+        JetButton,
+        JetActionMessage,
+        JetInputError,
+        VueMaskDirective,
     },
     data() {
         return {
             modal: false,
             form: this.$inertia.form({
-                //
+                name: this.name,
+                cnpj: this.cnpj,
             }, {
-                bag: 'deleteTeam'
+                bag: 'createCustomer'
             }),
             fields: [{
                 name: 'name',
@@ -90,6 +141,9 @@ export default {
         formatDate (value) {
             if (value === null) return '-';
             return moment(value).format('DD/MM/YYYY HH:ss');
+        },
+        createCustomer() {
+
         }
     }
 }

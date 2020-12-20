@@ -3,9 +3,12 @@ require('./bootstrap');
 require('moment');
 
 import Vue from 'vue';
+import { VueMaskDirective } from 'v-mask';
+Vue.directive('mask', VueMaskDirective);
 
 import { InertiaApp } from '@inertiajs/inertia-vue';
 import { InertiaForm } from 'laravel-jetstream';
+
 import PortalVue from 'portal-vue';
 
 Vue.mixin({ methods: { route } });
