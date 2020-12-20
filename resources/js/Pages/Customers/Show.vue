@@ -8,13 +8,20 @@
 
         <div class="py-5">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert" v-if="$page.flash.message">
+                    <div class="flex">
+                        <div>
+                            <p class="text-sm">{{ $page.flash.message }}</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8">
-                    <jet-secondary-button @click.native="modal=true">
+                    <jet-secondary-button @click.native="openModal">
                         Adicionar Cliente
                     </jet-secondary-button>
                     <br>
                     <table-vue
-                        refTable="customerstable"
+                        ref="customerstable"
                         apiUrl="/customers/json"
                         :fields="fields"
                     >
@@ -23,15 +30,6 @@
                                 Print
                             </jet-secondary-button>
                         </template>
-<!--                            <template slot="action-scope" slot-scope="props">-->
-<!--                                <div class="btn-group" role="group" aria-label="Basic example">-->
-<!--                                    <a :href="'/admin/users/'+props.rowData.id+'/edit'" type="button" class="btn btn-sm btn-warning">Editar</a>-->
-<!--        &lt;!&ndash;                                <delete-reg route="/admin/users/destroy"&ndash;&gt;-->
-<!--        &lt;!&ndash;                                            :rowid="props.rowData.id"&ndash;&gt;-->
-<!--        &lt;!&ndash;                                            @callback="refreshTable"&ndash;&gt;-->
-<!--        &lt;!&ndash;                                ></delete-reg>&ndash;&gt;-->
-<!--                                </div>-->
-<!--                            </template>-->
                     </table-vue>
                 </div>
             </div>
@@ -43,6 +41,13 @@
             <template #content>
                 <form action="#" method="POST">
                     <div>
+                        <div class="bg-red-100 border-t-4 border-red-500 rounded-b text-red-900 px-4 py-3 shadow-md" role="alert" v-if="$page.flash.errorMessage">
+                            <div class="flex">
+                                <div>
+                                    <p class="text-sm">{{ $page.flash.errorMessage }}</p>
+                                </div>
+                            </div>
+                        </div>
                         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                             <div>
                                 <label for="about" class="block text-sm font-medium text-gray-700">
@@ -51,29 +56,28 @@
                                 <div class="mt-1">
                                     <input type="text" v-model="form.name" id="name" class="form-input block w-full" />
                                 </div>
-                                <jet-input-error :message="form.error('name')" class="mt-2" />
+                                <div v-if="$page.errors.name" class="text-red-500">{{ $page.errors.name[0] }}</div>
+<!--                                <jet-input-error :message="form.error('name')" class="mt-2 text-purple-500" />-->
                             </div>
                             <div>
                                 <label for="about" class="block text-sm font-medium text-gray-700">
                                     CNPJ
                                 </label>
                                 <div class="mt-1">
-                                    <input type="text" v-mask="'### ### ###'" v-model="form.cnpj" id="cnpj" class="form-input block w-full" />
+                                    <input type="text" v-mask="'##.###.###/####-##'" v-model="form.cnpj" id="cnpj" class="form-input block w-full" />
                                 </div>
-                                <jet-input-error :message="form.error('cnpj')" class="mt-2" />
+                                <div v-if="$page.errors.cnpj" class="text-red-500">{{ $page.errors.cnpj[0] }}</div>
+<!--                                <jet-input-error :message="form.error('cnpj')" class="mt-2 text-purple-500" />-->
                             </div>
                         </div>
                     </div>
                 </form>
             </template>
             <template #footer>
-                <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-                    Saved.
-                </jet-action-message>
-                <jet-secondary-button :class="{'float-left': true}" @click.native="modal = false">
+                <jet-secondary-button :class="{'float-left': true}" @click.native="closeModal">
                     Fechar
                 </jet-secondary-button>
-                <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <jet-button  @click.native="createCustomer" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Adicionar
                 </jet-button>
             </template>
@@ -94,6 +98,7 @@ import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetInputError from "@/Jetstream/InputError";
 
 export default {
+    props: ['customers'],
     components: {
         AppLayout,
         Welcome,
@@ -103,7 +108,6 @@ export default {
         JetButton,
         JetActionMessage,
         JetInputError,
-        VueMaskDirective,
     },
     data() {
         return {
@@ -143,10 +147,26 @@ export default {
             return moment(value).format('DD/MM/YYYY HH:ss');
         },
         printRow (row) {
-            console.log(row);
+            // this.$refs.customerstable.refreshTable();
         },
         createCustomer() {
-
+            this.$inertia.post(route('customers.store'), this.form).then( () => {
+                if (Object.keys(this.$page.errors).length === 0 && this.$page.flash.errorMessage === null) {
+                    this.reset();
+                    this.closeModal();
+                    this.$refs.customerstable.refreshTable();
+                }
+            })
+        },
+        reset() {
+            this.form.name = ''
+            this.form.phone = ''
+        },
+        openModal() {
+            this.modal = true;
+        },
+        closeModal() {
+            this.modal = false;
         }
     }
 }

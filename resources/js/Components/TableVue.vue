@@ -5,7 +5,7 @@
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <input type="text" v-model="search" v-on:keyup="doTimerSearch" placeholder="Procurar...." class="form-input mt-1 mb-3 block w-full">
                     <div class="shadow overflow-hidden border-b border-gray-200">
-                        <vuetable :ref="refTable"
+                        <vuetable ref="vuetable"
                                   :css="css"
                                   :api-url="apiUrl"
                                   :append-params="appendParams"
@@ -143,13 +143,13 @@ export default {
     },
     methods: {
         refreshTable () {
-            Vue.nextTick(() => this.$refs.vuetable.refresh());
+            this.$nextTick(() => this.$refs.vuetable.refresh());
         },
         doFilter () {
             this.appendParams = {
                 'search': this.search
             };
-            Vue.nextTick(() => this.$refs.vuetable.refresh());
+            this.$nextTick(() => this.$refs.vuetable.refresh());
         },
         doTimerSearch () {
             if (this.search.length) {
@@ -159,7 +159,7 @@ export default {
         },
         perPageHandle (value) {
             this.perPage = parseInt(value.target.value);
-            Vue.nextTick(() => this.$refs.vuetable.refresh());
+            this.$nextTick(() => this.$refs.vuetable.refresh());
         },
         onPaginationData(paginationData) {
             this.$refs.pagination.setPaginationData(paginationData)

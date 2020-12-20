@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Customer\CreateCustomer;
 use App\Models\Customer;
 use App\Http\Responses\Customers\CustomersListResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
+use Laravel\Jetstream\Http\Controllers;
 
 class CustomerController extends Controller
 {
@@ -22,8 +25,13 @@ class CustomerController extends Controller
         return new CustomersListResponse();
     }
 
-    public function create()
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
+     */
+    public function store(Request $request)
     {
-        dd('ADD');
+        return (new CreateCustomer())->execute($request);
     }
 }

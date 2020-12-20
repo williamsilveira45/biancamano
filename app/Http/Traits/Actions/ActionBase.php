@@ -2,6 +2,10 @@
 
 namespace App\Http\Traits\Actions;
 
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
 /**
  * Trait ActionBase
  * @package App\Http\Traits\Actions
@@ -9,29 +13,30 @@ namespace App\Http\Traits\Actions;
 trait ActionBase
 {
     /** @var array */
-    protected $data = [];
+    protected $request;
 
     /**
-     * @param array $data
+     * @param Request $request
      * @return mixed
      * @throws \Exception
      */
-    public function execute(array $data = [])
+    public function execute(Request $request)
     {
-        return $this->init($data);
+        $this->request = $request;
+
+        return $this->init();
     }
 
     /**
-     * @param array $data
      * @return mixed
      * @throws \Exception
      */
-    protected function init(array $data = [])
+    protected function init()
     {
         try {
             // Set parameters
-            if (!empty($data) || isset($this->setParameters)) {
-                $this->setParameters($data);
+            if (!$this->request instanceof Request) {
+                throw new \Exception('Não foi identificado nenhuma requisição');
             }
 
             // Execute main functions
@@ -42,12 +47,14 @@ trait ActionBase
     }
 
     /**
-     * Set the parameters used throughout the class from the data passed to it
-     * Override this to change how the parameters are set and add validation
-     *
-     * @param array $data
+     * @param string $path
+     * @param array $params
+     * @return \Illuminate\Http\RedirectResponse
      */
-    abstract protected function setParameters(array $data): void;
+    protected function redirect($path, array $params = [])
+    {
+        return Redirect::route($path, $params);
+    }
 
     /**
      * Main function - add the main logic for the class here
