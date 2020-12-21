@@ -4,20 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbf2762e-0f68-4046-8faf-8b603169fe1a" name="Default Changelist" comment="Working on crud">
-      <change afterPath="$PROJECT_DIR$/app/Actions/Customer/CreateCustomer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Helpers/TextFormatting.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Traits/Actions/ResponseInertia.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="bbf2762e-0f68-4046-8faf-8b603169fe1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Traits/Actions/ActionBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Traits/Actions/ActionBase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Actions/Customer/CreateCustomer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/Customer/CreateCustomer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/TableVue.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/TableVue.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/Customers/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Customers/Show.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -218,7 +210,9 @@
       <workItem from="1608390956874" duration="1776000" />
       <workItem from="1608393327926" duration="20393000" />
       <workItem from="1608430672983" duration="5389000" />
-      <workItem from="1608486428847" duration="14471000" />
+      <workItem from="1608486428847" duration="14550000" />
+      <workItem from="1608551166548" duration="22000" />
+      <workItem from="1608588225871" duration="1537000" />
     </task>
     <task id="LOCAL-00001" summary="Working on crud">
       <created>1608430740482</created>
@@ -227,7 +221,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608430740482</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Working on crud - Create and list customers">
+      <created>1608506840552</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1608506840552</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,7 +236,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Working on crud" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on crud" />
+    <MESSAGE value="Working on crud - Create and list customers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on crud - Create and list customers" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1461" y="569" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608396232796">
@@ -246,10 +248,11 @@
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608494248648" />
-    <state x="337" y="431" key="CommitChangelistDialog2" timestamp="1608431499577">
+    <state x="337" y="431" key="CommitChangelistDialog2" timestamp="1608506840046">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="337" y="431" key="CommitChangelistDialog2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608431499577" />
+    <state x="337" y="431" key="CommitChangelistDialog2/0.25.3008.1667@0.25.3008.1667" timestamp="1608506840046" />
     <state x="540" y="534" key="FileChooserDialogImpl" timestamp="1608350409915">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
@@ -282,18 +285,23 @@
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="469" y="588" key="NewPhpClassDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608434377896" />
+    <state x="352" y="595" key="Vcs.Push.Dialog.v2" timestamp="1608506842559">
+      <screen x="0" y="25" width="3008" height="1667" />
+    </state>
+    <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667@0.25.3008.1667" timestamp="1608506842559" />
     <state x="554" y="776" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1608430761506">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="554" y="776" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608430761506" />
-    <state x="783" y="205" width="1337" height="976" key="find.popup" timestamp="1608505389699">
+    <state x="783" y="205" width="1337" height="976" key="find.popup" timestamp="1608588396230">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="783" y="205" width="1337" height="976" key="find.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608493592235" />
-    <state x="783" y="205" width="1337" height="976" key="find.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1608505389699" />
-    <state x="417" y="413" width="670" height="676" key="search.everywhere.popup" timestamp="1608495089035">
+    <state x="783" y="205" width="1337" height="976" key="find.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1608588396230" />
+    <state x="417" y="413" width="670" height="676" key="search.everywhere.popup" timestamp="1608588928549">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="417" y="413" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608495089035" />
+    <state x="417" y="413" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1608588928549" />
   </component>
 </project>

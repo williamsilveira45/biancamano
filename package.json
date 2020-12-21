@@ -29,6 +29,7 @@
     "dependencies": {
         "moment": "^2.29.1",
         "sweetalert": "^2.1.2",
+        "sweetalert2": "^10.12.5",
         "v-mask": "^2.2.3",
         "vue-simple-progress": "^1.1.1",
         "vue-toast-notification": "^0.4.0",

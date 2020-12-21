@@ -39,7 +39,7 @@ class CreateCustomer
             $data = $this->request->all();
 
             Customer::create([
-                'name' => $data['name'],
+                'name' => strtoupper($data['name']),
                 'cnpj' => $data['cnpj']
             ]);
 

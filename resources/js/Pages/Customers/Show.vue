@@ -29,6 +29,9 @@
                             <jet-secondary-button @click.native="() => printRow(row)">
                                 Print
                             </jet-secondary-button>
+                            <jet-danger-button @click.native="() => deleteCustomer(row.id)">
+                                Deletar
+                            </jet-danger-button>
                         </template>
                     </table-vue>
                 </div>
@@ -95,7 +98,10 @@ import moment from 'moment';
 import DialogModal from "@/Jetstream/DialogModal";
 import JetButton from "@/Jetstream/Button";
 import JetActionMessage from "@/Jetstream/ActionMessage";
+import JetDangerButton from "@/Jetstream/DangerButton";
 import JetInputError from "@/Jetstream/InputError";
+import Swal from 'sweetalert2'
+
 
 export default {
     props: ['customers'],
@@ -106,6 +112,7 @@ export default {
         TableVue,
         DialogModal,
         JetButton,
+        JetDangerButton,
         JetActionMessage,
         JetInputError,
     },
@@ -167,6 +174,42 @@ export default {
         },
         closeModal() {
             this.modal = false;
+        },
+        deleteCustomer(id) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    swalWithBootstrapButtons.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'Your imaginary file is safe :)',
+                        'error'
+                    )
+                }
+            })
         }
     }
 }
