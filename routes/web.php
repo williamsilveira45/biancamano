@@ -27,6 +27,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/json', 'CustomerController@json')->name('json');
         Route::get('/create', 'CustomerController@create')->name('create');
         Route::post('/store', 'CustomerController@store')->name('store');
+        Route::delete('/{customer}', 'CustomerController@delete')->name('delete');
+        Route::put('/{customer}', 'CustomerController@update')->name('update');
     });
 
     Route::prefix('/files')->name('files.')->group(function () {

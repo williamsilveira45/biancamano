@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Redirect;
  */
 trait ActionBase
 {
-    /** @var array */
+    /** @var Request */
     protected $request;
 
     /**

@@ -25,9 +25,15 @@
                         apiUrl="/customers/json"
                         :fields="fields"
                     >
+                        <template slot="ativado" slot-scope="{ row }">
+                            <a @click="() => loadData(row.active)">A</a>
+<!--                            <switch-active :activeProp="'Teste'"-->
+<!--                                    route="/customers/active"-->
+<!--                            ></switch-active>-->
+                        </template>
                         <template slot="actions" slot-scope="{ row }">
-                            <jet-secondary-button @click.native="() => printRow(row)">
-                                Print
+                            <jet-secondary-button @click.native="() => loadData(row)">
+                                Editar
                             </jet-secondary-button>
                             <jet-danger-button @click.native="() => deleteCustomer(row.id)">
                                 Deletar
@@ -39,7 +45,7 @@
         </div>
         <dialog-modal :show="modal">
             <template #title>
-                <h4>Novo Cliente</h4>
+                <h4 v-html="edit ? 'Editar Cliente' : 'Novo Cliente'"></h4>
             </template>
             <template #content>
                 <form action="#" method="POST">
@@ -60,7 +66,6 @@
                                     <input type="text" v-model="form.name" id="name" class="form-input block w-full" />
                                 </div>
                                 <div v-if="$page.errors.name" class="text-red-500">{{ $page.errors.name[0] }}</div>
-<!--                                <jet-input-error :message="form.error('name')" class="mt-2 text-purple-500" />-->
                             </div>
                             <div>
                                 <label for="about" class="block text-sm font-medium text-gray-700">
@@ -70,7 +75,6 @@
                                     <input type="text" v-mask="'##.###.###/####-##'" v-model="form.cnpj" id="cnpj" class="form-input block w-full" />
                                 </div>
                                 <div v-if="$page.errors.cnpj" class="text-red-500">{{ $page.errors.cnpj[0] }}</div>
-<!--                                <jet-input-error :message="form.error('cnpj')" class="mt-2 text-purple-500" />-->
                             </div>
                         </div>
                     </div>
@@ -80,9 +84,7 @@
                 <jet-secondary-button :class="{'float-left': true}" @click.native="closeModal">
                     Fechar
                 </jet-secondary-button>
-                <jet-button  @click.native="createCustomer" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Adicionar
-                </jet-button>
+                <jet-button v-html="edit ? 'Editar' : 'Adicionar'"  @click.native="edit ? updateCustomer() : createCustomer()" :class="{ 'opacity-25': form.processing }" :disabled="form.processing" />
             </template>
         </dialog-modal>
     </app-layout>
@@ -101,7 +103,7 @@ import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetDangerButton from "@/Jetstream/DangerButton";
 import JetInputError from "@/Jetstream/InputError";
 import Swal from 'sweetalert2'
-
+import SwitchActive from "@/Components/SwitchActive";
 
 export default {
     props: ['customers'],
@@ -115,9 +117,12 @@ export default {
         JetDangerButton,
         JetActionMessage,
         JetInputError,
+        SwitchActive,
     },
     data() {
         return {
+            idreg: 0,
+            edit: false,
             modal: false,
             form: this.$inertia.form({
                 name: this.name,
@@ -143,8 +148,12 @@ export default {
                 sortField: 'updated_at'
             },
             {
-                name: 'actions',
+                name: 'ativado',
                 title: 'Ativado'
+            },
+            {
+                name: 'actions',
+                title: 'Ações'
             }],
         }
     },
@@ -152,9 +161,6 @@ export default {
         formatDate (value) {
             if (value === null) return '-';
             return moment(value).format('DD/MM/YYYY HH:ss');
-        },
-        printRow (row) {
-            // this.$refs.customerstable.refreshTable();
         },
         createCustomer() {
             this.$inertia.post(route('customers.store'), this.form).then( () => {
@@ -165,51 +171,56 @@ export default {
                 }
             })
         },
+        updateCustomer() {
+            this.$inertia.put('/customers/' + this.idreg, this.form).then( () => {
+                if (Object.keys(this.$page.errors).length === 0 && this.$page.flash.errorMessage === null) {
+                    this.reset();
+                    this.closeModal();
+                    this.$refs.customerstable.refreshTable();
+                }
+            })
+        },
         reset() {
-            this.form.name = ''
-            this.form.phone = ''
+            this.form.name = '';
+            this.form.cnpj = '';
         },
         openModal() {
             this.modal = true;
         },
-        closeModal() {
+        closeModal(reset) {
             this.modal = false;
+            if (reset) {
+                this.edit = false;
+                this.reset();
+            }
         },
         deleteCustomer(id) {
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-success',
-                    cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: false
-            })
-
-            swalWithBootstrapButtons.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+            Swal.fire({
+                title: 'Você tem certeza?',
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
-                reverseButtons: true
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, deletar!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    swalWithBootstrapButtons.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
+                    this.$inertia.delete('/customers/' + id);
+                    Swal.fire(
+                        'Deletado!',
+                        'Registro deletado com sucesso.',
                         'success'
                     )
-                } else if (
-                    /* Read more about handling dismissals below */
-                    result.dismiss === Swal.DismissReason.cancel
-                ) {
-                    swalWithBootstrapButtons.fire(
-                        'Cancelled',
-                        'Your imaginary file is safe :)',
-                        'error'
-                    )
+                    this.$refs.customerstable.refreshTable();
                 }
             })
+        },
+        loadData(data) {
+            console.log(data);
+            this.idreg = data.id;
+            this.edit = true;
+            this.form.name = data.name;
+            this.form.cnpj = data.cnpj;
+            this.openModal();
         }
     }
 }

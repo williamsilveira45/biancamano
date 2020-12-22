@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Customer\CreateCustomer;
+use App\Actions\Customer\DeleteCustomer;
+use App\Actions\Customer\UpdateCustomer;
 use App\Models\Customer;
 use App\Http\Responses\Customers\CustomersListResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
-use Laravel\Jetstream\Http\Controllers;
 
 class CustomerController extends Controller
 {
@@ -33,5 +33,26 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         return (new CreateCustomer())->execute($request);
+    }
+
+    /**
+     * @param Customer $customer
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
+     */
+    public function update(Customer $customer, Request $request)
+    {
+        return (new UpdateCustomer())->execute($customer, $request);
+    }
+
+    /**
+     * @param Customer $customer
+     * @param Request $request
+     * @return bool
+     * @throws \Exception
+     */
+    public function delete(Customer $customer, Request $request) {
+        return (new DeleteCustomer())->execute($customer, $request);
     }
 }

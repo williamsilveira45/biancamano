@@ -2,6 +2,8 @@
 
 namespace App\Http\Traits\Actions;
 
+use Illuminate\Http\Request;
+
 /**
  * Trait ModelActionBase
  * @package App\Http\Traits\Actions
@@ -10,8 +12,8 @@ trait ModelActionBase
 {
     protected $actionRecord;
 
-    /** @var array */
-    protected $data = [];
+    /** @var Request */
+    protected $request;
 
     /**
      * @param \Eloquent|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Builder $actionRecord
@@ -19,11 +21,12 @@ trait ModelActionBase
      * @return mixed
      * @throws \Exception
      */
-    public function execute($actionRecord, array $data = [])
+    public function execute($actionRecord, Request $request)
     {
         // Set global model
         $this->actionRecord = $actionRecord;
-        return $this->init($data);
+        $this->request = $request;
+        return $this->init();
     }
 
     /**
@@ -31,12 +34,13 @@ trait ModelActionBase
      * @return mixed
      * @throws \Exception
      */
-    protected function init(array $data = [])
+    protected function init()
     {
         try {
             // Set parameters
-            if (!empty($data) || isset($this->setParameters)) {
-                $this->setParameters($data);
+            // Set parameters
+            if (!$this->request instanceof Request) {
+                throw new \Exception('Não foi identificado nenhuma requisição');
             }
 
             // Execute main functions
@@ -45,14 +49,6 @@ trait ModelActionBase
             throw $exception;
         }
     }
-
-    /**
-     * Set the parameters used throughout the class from the data passed to it
-     * Override this to change how the parameters are set and add validation
-     *
-     * @param array $data
-     */
-    abstract protected function setParameters(array $data): void;
 
     /**
      * Main function - add the main logic for the class here

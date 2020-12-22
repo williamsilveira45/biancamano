@@ -68,6 +68,9 @@ export default {
         VuetablePagination,
         VuetablePaginationInfo,
     },
+    mounted() {
+      console.log(this.$scopedSlots, this.$slots);
+    },
     props: {
         refTable: {
             type: String,
@@ -124,10 +127,10 @@ export default {
             perPage: 10,
             data: [],
             cssPagination: {
-                wrapperClass: 'pagination float-right',
-                activeClass: 'active btn-info',
+                wrapperClass: '',
+                activeClass: 'cursor-pointer inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest mr-1 ml-1',
                 disabledClass: 'disabled',
-                pageClass: 'page-item btn ml-1 mr-1',
+                pageClass: 'cursor-pointer inline-flex items-center px-4 py-2 bg-white border ml-1 mr-1 rounded-md text-xs font-semibold',
                 linkClass: 'page-link',
                 paginationClass: 'pagination',
                 paginationInfoClass: 'float-left',
