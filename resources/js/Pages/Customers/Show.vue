@@ -25,12 +25,6 @@
                         apiUrl="/customers/json"
                         :fields="fields"
                     >
-                        <template slot="ativado" slot-scope="{ row }">
-                            <a @click="() => loadData(row.active)">A</a>
-<!--                            <switch-active :activeProp="'Teste'"-->
-<!--                                    route="/customers/active"-->
-<!--                            ></switch-active>-->
-                        </template>
                         <template slot="actions" slot-scope="{ row }">
                             <jet-secondary-button @click.native="() => loadData(row)">
                                 Editar
@@ -136,6 +130,11 @@ export default {
                 sortField: 'name'
             },
             {
+                name: 'cnpj',
+                title: 'CNPJ',
+                sortField: 'cnpj'
+            },
+            {
                 name: 'created_at',
                 title: 'Criado em',
                 formatter: this.formatDate,
@@ -146,10 +145,6 @@ export default {
                 title: 'Atualizado em',
                 formatter: this.formatDate,
                 sortField: 'updated_at'
-            },
-            {
-                name: 'ativado',
-                title: 'Ativado'
             },
             {
                 name: 'actions',

@@ -35,5 +35,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/', 'FileController@show')->name('index');
         Route::get('/json', 'FileController@json')->name('json');
         Route::post('/upload', 'FileController@upload')->name('upload');
+        Route::delete('/{customer}', 'FileController@delete')->name('delete');
+        Route::put('/{customer}', 'FileController@update')->name('update');
     });
 });

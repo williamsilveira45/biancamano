@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Actions\Customer\Upload;
 use App\Models\Customer;
-use App\Models\File;
 use App\Http\Responses\Files\FilesListResponse;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class FileController extends Controller
 {
-    public function index()
+    /**
+     * @return \Inertia\Response
+     */
+    public function show()
     {
-        $customers = Customer::active()->pluck('name', 'id');
-        return view('files.index', ['customers' => $customers]);
+        $customers = \App\Models\Customer::active()->pluck('name', 'id');
+        return Inertia::render('Files/Show', ['customers' => $customers, 'csrf' => csrf_token()]);
     }
 
     public function json()

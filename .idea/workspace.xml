@@ -5,18 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bbf2762e-0f68-4046-8faf-8b603169fe1a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Actions/Customer/DeleteCustomer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Actions/Customer/UpdateCustomer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Components/SwitchActive.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Components/FileInput.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Files/Show.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Actions/Customer/CreateCustomer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/Customer/CreateCustomer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Traits/Actions/ActionBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Traits/Actions/ActionBase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Traits/Actions/ModelActionBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Traits/Actions/ModelActionBase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FileController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Components/TableVue.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/TableVue.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Jetstream/Modal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Jetstream/Modal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/Customers/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Customers/Show.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
@@ -185,15 +181,15 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/js/Components" />
+      <recent name="$PROJECT_DIR$/resources/js/Pages/Files" />
       <recent name="$PROJECT_DIR$/app/Actions/Customer" />
       <recent name="$PROJECT_DIR$/app/Http/Traits/Actions" />
       <recent name="$PROJECT_DIR$/app" />
-      <recent name="$PROJECT_DIR$/database/migrations" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views" />
     </key>
   </component>
   <component name="RunManager">
@@ -220,7 +216,9 @@
       <workItem from="1608430672983" duration="5389000" />
       <workItem from="1608486428847" duration="14550000" />
       <workItem from="1608551166548" duration="22000" />
-      <workItem from="1608588225871" duration="12035000" />
+      <workItem from="1608588225871" duration="12143000" />
+      <workItem from="1608637632821" duration="102000" />
+      <workItem from="1608675300745" duration="5833000" />
     </task>
     <task id="LOCAL-00001" summary="Working on crud">
       <created>1608430740482</created>
@@ -243,7 +241,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608590080727</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Working with componente vue table">
+      <created>1608602009826</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1608602009826</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,23 +258,24 @@
     <MESSAGE value="Working on crud" />
     <MESSAGE value="Working on crud - Create and list customers" />
     <MESSAGE value="Files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Files" />
+    <MESSAGE value="Working with componente vue table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working with componente vue table" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1461" y="569" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608396232796">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="1461" y="569" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608396232796" />
-    <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1608594318510">
+    <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1608680374104">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
-    <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608494248648" />
+    <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608680374104" />
     <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667@0.25.3008.1667" timestamp="1608594318510" />
-    <state x="337" y="431" key="CommitChangelistDialog2" timestamp="1608590079962">
+    <state x="337" y="431" key="CommitChangelistDialog2" timestamp="1608602009065">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="337" y="431" key="CommitChangelistDialog2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608431499577" />
-    <state x="337" y="431" key="CommitChangelistDialog2/0.25.3008.1667@0.25.3008.1667" timestamp="1608590079962" />
+    <state x="337" y="431" key="CommitChangelistDialog2/0.25.3008.1667@0.25.3008.1667" timestamp="1608602009065" />
     <state x="540" y="534" key="FileChooserDialogImpl" timestamp="1608350409915">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
@@ -302,24 +308,28 @@
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="469" y="588" key="NewPhpClassDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608434377896" />
-    <state x="352" y="595" key="Vcs.Push.Dialog.v2" timestamp="1608590083603">
+    <state x="573" y="786" key="NewPhpFileDialog" timestamp="1608677675589">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
-    <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667@0.25.3008.1667" timestamp="1608590083603" />
+    <state x="573" y="786" key="NewPhpFileDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608677675589" />
+    <state x="352" y="595" key="Vcs.Push.Dialog.v2" timestamp="1608602011885">
+      <screen x="0" y="25" width="3008" height="1667" />
+    </state>
+    <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667@0.25.3008.1667" timestamp="1608602011885" />
     <state x="554" y="776" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1608598126541">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="554" y="776" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608430761506" />
     <state x="554" y="776" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.3008.1667@0.25.3008.1667" timestamp="1608598126541" />
-    <state x="783" y="205" width="1337" height="976" key="find.popup" timestamp="1608597977478">
+    <state x="783" y="205" width="1337" height="976" key="find.popup" timestamp="1608680554534">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
-    <state x="783" y="205" width="1337" height="976" key="find.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608493592235" />
+    <state x="783" y="205" width="1337" height="976" key="find.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608680554534" />
     <state x="783" y="205" width="1337" height="976" key="find.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1608597977478" />
-    <state x="417" y="413" width="670" height="676" key="search.everywhere.popup" timestamp="1608600604734">
+    <state x="417" y="413" width="670" height="676" key="search.everywhere.popup" timestamp="1608679390373">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
-    <state x="417" y="413" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608495089035" />
+    <state x="417" y="413" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608679390373" />
     <state x="417" y="413" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1608600604734" />
   </component>
 </project>

@@ -136,10 +136,10 @@ export default {
                 paginationInfoClass: 'float-left',
                 dropdownClass: 'form-control',
                 icons: {
-                    first: 'fa fa-angle-double-left',
-                    prev: 'fa fa-angle-left',
-                    next: 'fa fa-angle-right',
-                    last: 'fa fa-angle-double-right',
+                    first: 'cursor-pointer fa fa-angle-double-left',
+                    prev: 'cursor-pointer fa fa-angle-left',
+                    next: 'cursor-pointer fa fa-angle-right',
+                    last: 'cursor-pointer fa fa-angle-double-right',
                 }
             }
         };

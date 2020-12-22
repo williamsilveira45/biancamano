@@ -20,6 +20,9 @@
                             <jet-nav-link :href="route('customers.index')" :active="route().current('customers.index')">
                                 Clientes
                             </jet-nav-link>
+                            <jet-nav-link :href="route('files.index')" :active="route().current('files.index')">
+                                Arquivos
+                            </jet-nav-link>
                         </div>
                     </div>
 
