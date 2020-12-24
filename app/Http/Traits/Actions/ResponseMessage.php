@@ -15,28 +15,31 @@ trait ResponseMessage
      */
     public function responseSuccess(string $message, array $extra = [])
     {
-        return $this->responseMessage(true, $message, $extra);
+        return $this->responseMessage('success', true, $message, $extra);
     }
 
     /**
+     * @param string $type
      * @param string $message
      * @param array $extra
      * @return array
      */
-    public function responseFailure(string $message, array $extra = [])
+    public function responseFailure(string $type, string $message, array $extra = [])
     {
-        return $this->responseMessage(false, $message, $extra);
+        return $this->responseMessage($type,false, $message, $extra);
     }
 
     /**
+     * @param string $type
      * @param boolean $success
      * @param string $message
      * @param array $extra
      * @return array
      */
-    private function responseMessage(bool $success, string $message, array $extra = [])
+    private function responseMessage(string $type, bool $success, string $message, array $extra = [])
     {
         return $extra + [
+                'type' => $type,
                 'success' => $success,
                 'message' => $message
             ];

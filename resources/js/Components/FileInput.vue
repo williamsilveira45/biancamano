@@ -1,13 +1,14 @@
 <template>
-    <div class="col-md-12">
-        <div class="row">
-            <div class="col-md-4">
-                <select v-model="customer_id" name="customer_id" class="form-control">
-                    <option value="0" selected="selected">Selecione um Cliente</option>
-                    <option v-for="(item, index) in customers" :value="index">{{ item }}</option>
-                </select>
+    <div>
+        <div class="flex">
+            <div class="flex-1">
+                <v-select :options="customers" placeholder="Selecione um cliente" append-to-body v-model="customer_id"></v-select>
+<!--                <select v-model="customer_id" name="customer_id" class="border bg-white rounded px-3 py-2 outline-none">-->
+<!--                    <option value="0" selected="selected">Selecione um Cliente</option>-->
+<!--                    <option v-for="(item, index) in customers" :value="index">{{ item }}</option>-->
+<!--                </select>-->
             </div>
-            <div class="col-md-2">
+            <div class="flex-5 ml-3">
                 <file-upload
                     ref="upload"
                     v-model="files"
@@ -17,11 +18,11 @@
                     @input-file="inputFile"
                     @input-filter="inputFilter"
                 >
-                    <a href="#" class="btn btn-info">Selecionar Arquivo</a>
+                    <a href="#" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">Selecionar Arquivo</a>
                 </file-upload>
             </div>
-            <div class="col-md-2">
-                <button class="btn btn-success" v-show="!$refs.upload || !$refs.upload.active" @click.prevent="$refs.upload.active = true" type="button">Começar upload</button>
+            <div class="flex-1 ml-3">
+                <button class="inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-900 focus:outline-none focus:border-green-900 focus:shadow-outline-gray transition ease-in-out duration-150" v-show="!$refs.upload || !$refs.upload.active" @click.prevent="$refs.upload.active = true" type="button">Começar upload</button>
                 <button class="btn btn-warning" v-show="$refs.upload && $refs.upload.active" @click.prevent="$refs.upload.active = false" type="button">Cancelar upload</button>
             </div>
         </div>
@@ -55,10 +56,15 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import FileUpload from 'vue-upload-component/src'
 import swal from "sweetalert";
 import ProgressBar from 'vue-simple-progress';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import vSelect from "vue-select";
+import "vue-select/dist/vue-select.css";
+
+Vue.component("v-select", vSelect);
 
 export default {
     name: "FileInput",
@@ -68,7 +74,7 @@ export default {
             required: true
         },
         customers: {
-            type: Object,
+            type: Array,
             required: true
         },
     },
@@ -85,9 +91,7 @@ export default {
         FileUpload,
         ProgressBar,
         FontAwesomeIcon,
-    },
-    mounted() {
-        console.log(this.$refs);
+        vSelect,
     },
     methods: {
         /**
@@ -155,5 +159,21 @@ export default {
 </script>
 
 <style scoped>
+.v-select.drop-up.vs--open .vs__dropdown-toggle {
+    border-radius: 0 0 4px 4px;
+    border-top-color: transparent;
+    border-bottom-color: rgba(60, 60, 60, 0.26);
+    z-index: 4000!important;
+}
 
+.vs__dropdown-menu {
+    z-index: 99999!important;
+}
+
+[data-popper-placement='top'] {
+    border-radius: 4px 4px 0 0;
+    border-top-style: solid;
+    border-bottom-style: none;
+    box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.15)
+}
 </style>

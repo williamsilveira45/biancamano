@@ -22,67 +22,72 @@
 </template>
 
 <script>
-    export default {
-        name: "SwitchActive",
-        props: {
-            active: {
-                type: Boolean,
-                required: true
-            },
-            endp: {
-                type: String,
-                required: true
-            },
-            rowid: {
-                type: Number,
-                required: true
-            }
+import Vue from 'vue';
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
+
+Vue.use(VueToast);
+export default {
+    name: "SwitchActive",
+    props: {
+        active: {
+            type: Boolean,
+            required: true
         },
-        data() {
-            return {
-                text: '',
-                activeData: false,
-            };
+        endp: {
+            type: String,
+            required: true
         },
-        computed: {
-            getText() {
-                return this.active ? 'Ativado' : 'Desativado';
-            }
+        rowid: {
+            type: Number,
+            required: true
+        }
+    },
+    data() {
+        return {
+            text: '',
+            activeData: false,
+        };
+    },
+    computed: {
+        getText() {
+            return this.active ? 'Ativado' : 'Desativado';
+        }
+    },
+    methods: {
+        changingValue() {
+            this.active = !this.active;
         },
-        methods: {
-            changingValue() {
-                this.active = !this.active;
-            },
-            handleChange() {
-                var self = this;
-                axios.post(self.endp +'/'+ self.rowid, {
-                    active: !self.active,
-                })
-                .then(response => {
-                    if (response.data.success===true) {
-                        this.changingValue();
-                        Vue.$toast.success(response.data.message, {
-                            duration: 3000,
-                            position: 'top-right',
-                            dismissible: true,
-                        });
-                    } else {
-                        this.active = self.active;
-                        Vue.$toast.error(response.data.message, {
-                            duration: 3000,
-                            position: 'top-right',
-                            dismissible: true,
-                        });
-                    }
-                })
-                .catch(error => {
-                    Vue.$toast.error(error.message, {
+        handleChange() {
+            var self = this;
+            axios.post(self.endp +'/'+ self.rowid, {
+                active: !self.active,
+            })
+            .then(response => {
+                if (response.data.success===true) {
+                    this.changingValue();
+                    Vue.$toast.success(response.data.message, {
                         duration: 3000,
                         position: 'top-right',
                         dismissible: true,
                     });
+                } else {
+                    this.active = self.active;
+                    Vue.$toast.error(response.data.message, {
+                        duration: 3000,
+                        position: 'top-right',
+                        dismissible: true,
+                    });
+                }
+            })
+            .catch(error => {
+                Vue.$toast.error(error.message, {
+                    duration: 3000,
+                    position: 'top-right',
+                    dismissible: true,
                 });
-            },
+            });
+        },
     }
 }
 </script>

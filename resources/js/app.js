@@ -7,11 +7,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-import VueToast from 'vue-toast-notification';
-import 'vue-toast-notification/dist/theme-sugar.css';
 import 'font-awesome/css/font-awesome.min.css';
 
-Vue.use(VueToast);
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)

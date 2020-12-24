@@ -8,10 +8,10 @@
 
         <div class="py-5">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert" v-if="$page.flash.message">
+                <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert" v-if="successMsg.length">
                     <div class="flex">
                         <div>
-                            <p class="text-sm">{{ $page.flash.message }}</p>
+                            <p class="text-sm">{{ successMsg }}</p>
                         </div>
                     </div>
                 </div>
@@ -89,10 +89,10 @@
             <template #content>
                 <form action="#" method="POST">
                     <div>
-                        <div class="bg-red-100 border-t-4 border-red-500 rounded-b text-red-900 px-4 py-3 shadow-md" role="alert" v-if="$page.flash.errorMessage">
+                        <div class="bg-red-100 border-t-4 border-red-500 rounded-b text-red-900 px-4 py-3 shadow-md" role="alert" v-if="errorMsg.length">
                             <div class="flex">
                                 <div>
-                                    <p class="text-sm">{{ $page.flash.errorMessage }}</p>
+                                    <p class="text-sm">{{ errorMsg }}</p>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                                 <div class="mt-1">
                                     <input type="text" v-model="form.name" id="name" class="form-input block w-full" />
                                 </div>
-                                <div v-if="$page.errors.name" class="text-red-500">{{ $page.errors.name[0] }}</div>
+                                <div v-if="'name' in errors" class="text-red-500">{{ errors.name }}</div>
                             </div>
                             <div>
                                 <label for="about" class="block text-sm font-medium text-gray-700">
@@ -113,7 +113,7 @@
                                 <div class="mt-1">
                                     <input type="text" v-mask="'##.###.###/####-##'" v-model="form.cnpj" id="cnpj" class="form-input block w-full" />
                                 </div>
-                                <div v-if="$page.errors.cnpj" class="text-red-500">{{ $page.errors.cnpj[0] }}</div>
+                                <div v-if="'cnpj' in errors" class="text-red-500">{{ errors.cnpj }}</div>
                             </div>
                         </div>
                     </div>
@@ -134,7 +134,6 @@
 import AppLayout from '@/Layouts/AppLayout'
 import Welcome from '@/Jetstream/Welcome'
 import JetSecondaryButton from '@/Jetstream/SecondaryButton'
-import TableVue from "@/Components/TableVue";
 import moment from 'moment';
 import DialogModal from "@/Jetstream/DialogModal";
 import JetButton from "@/Jetstream/Button";
@@ -153,7 +152,6 @@ export default {
         AppLayout,
         Welcome,
         JetSecondaryButton,
-        TableVue,
         DialogModal,
         JetButton,
         JetDangerButton,
@@ -166,6 +164,9 @@ export default {
     },
     data() {
         return {
+            successMsg: '',
+            errorMsg: '',
+            errors: {},
             data: [],
             perPage: 10,
             search: '',
@@ -245,12 +246,23 @@ export default {
             return moment(value).format('DD/MM/YYYY HH:ss');
         },
         createCustomer() {
-            this.$inertia.post(route('customers.store'), this.form).then( () => {
-                if (Object.keys(this.$page.errors).length === 0 && this.$page.flash.errorMessage === null) {
+            this.resetErrors();
+            axios.post("/customers/store", this.form).then( (response) => {
+                const { data } = response;
+
+                if (data.success) {
                     this.reset();
                     this.closeModal();
-                    this.$refs.customerstable.refreshTable();
+                    this.refreshTable();
+                    this.successMsg = data.message;
+                    return;
                 }
+
+                if (!data.success && data.type === 'inputError') {
+                    this.errors = data.errors;
+                }
+
+                this.errorMsg = data.message;
             })
         },
         updateCustomer() {
@@ -258,13 +270,19 @@ export default {
                 if (Object.keys(this.$page.errors).length === 0 && this.$page.flash.errorMessage === null) {
                     this.reset();
                     this.closeModal();
-                    this.$refs.customerstable.refreshTable();
+                    this.refreshTable();
                 }
             })
         },
         reset() {
             this.form.name = '';
             this.form.cnpj = '';
+            this.resetErrors();
+        },
+        resetErrors() {
+            this.successMsg = '';
+            this.errorMsg = '';
+            this.errors = {};
         },
         openModal() {
             this.modal = true;
@@ -292,7 +310,7 @@ export default {
                         'Registro deletado com sucesso.',
                         'success'
                     )
-                    this.$refs.customerstable.refreshTable();
+                    this.refreshTable();
                 }
             })
         },

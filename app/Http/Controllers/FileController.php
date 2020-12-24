@@ -16,7 +16,11 @@ class FileController extends Controller
     public function show()
     {
         $customers = \App\Models\Customer::active()->pluck('name', 'id');
-        return Inertia::render('Files/Show', ['customers' => $customers, 'csrf' => csrf_token()]);
+        foreach ($customers as $id => $c) {
+            $cc[] = ['label' => $c, 'code' => $id];
+        }
+
+        return Inertia::render('Files/Show', ['customers' => $cc, 'csrf' => csrf_token()]);
     }
 
     public function json()

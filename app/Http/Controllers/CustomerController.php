@@ -33,7 +33,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        return (new CreateCustomer())->execute($request);
+        return (new CreateCustomer())->execute($request->all());
     }
 
     /**

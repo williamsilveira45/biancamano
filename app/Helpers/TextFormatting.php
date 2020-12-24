@@ -98,6 +98,26 @@ class TextFormatting
     }
 
     /**
+     * @param Validator|ValidationException $validator
+     * @return array
+     * @throws \Exception
+     */
+    public static function getErrorsToArray($validator)
+    {
+        $messages = $validator instanceof ValidationException ?
+            $validator->errors() :
+            $validator->errors()->getMessages();
+
+        if (is_array($messages)) {
+            foreach ($messages as $input => $message) {
+                $errors[$input] = $message[0];
+            }
+
+            return $errors;
+        }
+    }
+
+    /**
      * Convert apostrophes and quotation marks to entities
      * @param string $text
      * @return mixed
