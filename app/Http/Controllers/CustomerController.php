@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Customer\ActiveCustomer;
 use App\Actions\Customer\CreateCustomer;
 use App\Actions\Customer\DeleteCustomer;
 use App\Actions\Customer\UpdateCustomer;
@@ -54,5 +55,16 @@ class CustomerController extends Controller
      */
     public function delete(Customer $customer, Request $request) {
         return (new DeleteCustomer())->execute($customer, $request);
+    }
+
+    /**
+     * @param Customer $customer
+     * @param Request $request
+     * @return bool
+     * @throws \Exception
+     */
+    public function active(Customer $customer, Request $request)
+    {
+        return (new ActiveCustomer())->execute($customer, $request);
     }
 }

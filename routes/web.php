@@ -29,6 +29,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::post('/store', 'CustomerController@store')->name('store');
         Route::delete('/{customer}', 'CustomerController@delete')->name('delete');
         Route::put('/{customer}', 'CustomerController@update')->name('update');
+        Route::post('/active/{customer}', 'CustomerController@active')->name('active');
     });
 
     Route::prefix('/files')->name('files.')->group(function () {
