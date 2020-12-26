@@ -7,7 +7,7 @@ use App\Actions\Customer\CreateCustomer;
 use App\Actions\Customer\DeleteCustomer;
 use App\Actions\Customer\UpdateCustomer;
 use App\Models\Customer;
-use App\Http\Responses\Customers\CustomersListResponse;
+use App\Http\Responses\Customers\PlanoContasResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -23,7 +23,7 @@ class CustomerController extends Controller
 
     public function json()
     {
-        return new CustomersListResponse();
+        return new PlanoContasResponse();
     }
 
     /**

@@ -39,4 +39,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::delete('/{customer}', 'FileController@delete')->name('delete');
         Route::put('/{customer}', 'FileController@update')->name('update');
     });
+
+    Route::prefix('/sistema')->name('sistema.')->group(function () {
+        Route::prefix('/pconta')->name('pconta.')->group(function() {
+            Route::get('/', 'PlanoContasController@show')->name('index');
+            Route::get('/json', 'PlanoContasController@json')->name('json');
+            Route::get('/create', 'PlanoContasController@create')->name('create');
+            Route::post('/store', 'PlanoContasController@store')->name('store');
+            Route::delete('/{customer}', 'PlanoContasController@delete')->name('delete');
+            Route::put('/{customer}', 'PlanoContasController@update')->name('update');
+        });
+    });
 });

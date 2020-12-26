@@ -5,22 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bbf2762e-0f68-4046-8faf-8b603169fe1a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/StoreProc_Vencimento_Summaries.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bfba2ea9-e6e3-4c12-bacc-d4cc895c08b5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bfba2ea9-e6e3-4c12-bacc-d4cc895c08b5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/PlanoContasController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Responses/PlanoContas/PlanoContasResponse.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Actions/Customer/ActiveCustomer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/Customer/ActiveCustomer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Actions/Customer/DeleteCustomer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/Customer/DeleteCustomer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Actions/Customer/UpdateCustomer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/Customer/UpdateCustomer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Actions/Customer/Upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/File/Upload.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FileController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Traits/Actions/ModelActionBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Traits/Actions/ModelActionBase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/ParseCsvFile.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/ParseCsvFile.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/FileInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/FileInput.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Customers/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Customers/Show.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Files/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Files/Show.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +169,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/database" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Responses" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -188,16 +179,16 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/database" />
-      <recent name="$PROJECT_DIR$/app/Actions/Customer" />
-      <recent name="$PROJECT_DIR$/resources/js/Components" />
-      <recent name="$PROJECT_DIR$/resources/js/Pages/Files" />
-      <recent name="$PROJECT_DIR$/app/Http/Traits/Actions" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Actions/File" />
       <recent name="$PROJECT_DIR$/resources/views" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Responses" />
+      <recent name="$PROJECT_DIR$/app/Http/Controllers" />
+      <recent name="$PROJECT_DIR$/database" />
+      <recent name="$PROJECT_DIR$/app/Actions/Customer" />
+      <recent name="$PROJECT_DIR$/resources/js/Components" />
     </key>
   </component>
   <component name="RunManager">
@@ -230,7 +221,8 @@
       <workItem from="1608724741107" duration="135000" />
       <workItem from="1608763916106" duration="7326000" />
       <workItem from="1608784744981" duration="10292000" />
-      <workItem from="1608913865023" duration="17142000" />
+      <workItem from="1608913865023" duration="17190000" />
+      <workItem from="1608985178921" duration="3682000" />
     </task>
     <task id="LOCAL-00001" summary="Working on crud">
       <created>1608430740482</created>
@@ -281,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608795180129</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Resolvendo problemas para inserir mais rapido os dados dos arquivos">
+      <created>1608945487143</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1608945487143</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,7 +294,8 @@
     <MESSAGE value="Tela do file input" />
     <MESSAGE value="Ajeitando a vue table" />
     <MESSAGE value="Trabalhando melhor os componentes e respostas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Trabalhando melhor os componentes e respostas" />
+    <MESSAGE value="Resolvendo problemas para inserir mais rapido os dados dos arquivos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Resolvendo problemas para inserir mais rapido os dados dos arquivos" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1461" y="569" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608396232796">
@@ -307,15 +307,20 @@
     </state>
     <state x="356" y="391" key="#com.intellij.ide.util.MemberChooser/0.25.1920.1175@0.25.1920.1175" timestamp="1608917088268" />
     <state x="557" y="544" key="#com.intellij.ide.util.MemberChooser/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608792458719" />
+    <state x="629" y="25" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1608995167363">
+      <screen x="0" y="25" width="1920" height="1175" />
+    </state>
+    <state x="629" y="25" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.25.1920.1175@0.25.1920.1175" timestamp="1608995167363" />
     <state x="313" y="442" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1608915747652">
       <screen x="0" y="25" width="1920" height="1175" />
     </state>
     <state x="313" y="442" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.1920.1175@0.25.1920.1175" timestamp="1608915747652" />
     <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608792715406" />
     <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667@0.25.3008.1667" timestamp="1608594318510" />
-    <state x="337" y="431" key="CommitChangelistDialog2" timestamp="1608795179241">
-      <screen x="0" y="25" width="3008" height="1667" />
+    <state x="215" y="311" key="CommitChangelistDialog2" timestamp="1608945486154">
+      <screen x="0" y="25" width="1920" height="1175" />
     </state>
+    <state x="215" y="311" key="CommitChangelistDialog2/0.25.1920.1175@0.25.1920.1175" timestamp="1608945486154" />
     <state x="337" y="431" key="CommitChangelistDialog2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608795179241" />
     <state x="337" y="431" key="CommitChangelistDialog2/0.25.3008.1667@0.25.3008.1667" timestamp="1608602009065" />
     <state width="254" height="195" key="DatabaseViewActions_Filter" timestamp="1608919039473">
@@ -330,25 +335,25 @@
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="540" y="534" key="FileChooserDialogImpl/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608350409915" />
-    <state width="1294" height="325" key="GridCell.Tab.0.bottom" timestamp="1608939846802">
+    <state width="1294" height="325" key="GridCell.Tab.0.bottom" timestamp="1608990984581">
       <screen x="0" y="25" width="1920" height="1175" />
     </state>
-    <state width="1294" height="325" key="GridCell.Tab.0.bottom/0.25.1920.1175@0.25.1920.1175" timestamp="1608939846802" />
+    <state width="1294" height="325" key="GridCell.Tab.0.bottom/0.25.1920.1175@0.25.1920.1175" timestamp="1608990984581" />
     <state width="1000" height="488" key="GridCell.Tab.0.bottom/0.25.3008.1667@0.25.3008.1667" timestamp="1608505733971" />
-    <state width="1294" height="325" key="GridCell.Tab.0.center" timestamp="1608939846801">
+    <state width="1294" height="325" key="GridCell.Tab.0.center" timestamp="1608990984580">
       <screen x="0" y="25" width="1920" height="1175" />
     </state>
-    <state width="1294" height="325" key="GridCell.Tab.0.center/0.25.1920.1175@0.25.1920.1175" timestamp="1608939846801" />
+    <state width="1294" height="325" key="GridCell.Tab.0.center/0.25.1920.1175@0.25.1920.1175" timestamp="1608990984580" />
     <state width="1000" height="488" key="GridCell.Tab.0.center/0.25.3008.1667@0.25.3008.1667" timestamp="1608505733971" />
-    <state width="1294" height="325" key="GridCell.Tab.0.left" timestamp="1608939846801">
+    <state width="1294" height="325" key="GridCell.Tab.0.left" timestamp="1608990984577">
       <screen x="0" y="25" width="1920" height="1175" />
     </state>
-    <state width="1294" height="325" key="GridCell.Tab.0.left/0.25.1920.1175@0.25.1920.1175" timestamp="1608939846801" />
+    <state width="1294" height="325" key="GridCell.Tab.0.left/0.25.1920.1175@0.25.1920.1175" timestamp="1608990984577" />
     <state width="1000" height="488" key="GridCell.Tab.0.left/0.25.3008.1667@0.25.3008.1667" timestamp="1608505733970" />
-    <state width="1294" height="325" key="GridCell.Tab.0.right" timestamp="1608939846802">
+    <state width="1294" height="325" key="GridCell.Tab.0.right" timestamp="1608990984580">
       <screen x="0" y="25" width="1920" height="1175" />
     </state>
-    <state width="1294" height="325" key="GridCell.Tab.0.right/0.25.1920.1175@0.25.1920.1175" timestamp="1608939846802" />
+    <state width="1294" height="325" key="GridCell.Tab.0.right/0.25.1920.1175@0.25.1920.1175" timestamp="1608990984580" />
     <state width="1000" height="488" key="GridCell.Tab.0.right/0.25.3008.1667@0.25.3008.1667" timestamp="1608505733971" />
     <state x="0" y="178" key="MergeDialog" timestamp="1608430861312">
       <screen x="0" y="25" width="3008" height="1667" />
@@ -370,9 +375,10 @@
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="564" y="560" key="VCS.ChangeListViewerDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608792236906" />
-    <state x="352" y="595" key="Vcs.Push.Dialog.v2" timestamp="1608795181565">
-      <screen x="0" y="25" width="3008" height="1667" />
+    <state x="225" y="427" key="Vcs.Push.Dialog.v2" timestamp="1608945488658">
+      <screen x="0" y="25" width="1920" height="1175" />
     </state>
+    <state x="225" y="427" key="Vcs.Push.Dialog.v2/0.25.1920.1175@0.25.1920.1175" timestamp="1608945488658" />
     <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608795181565" />
     <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667@0.25.3008.1667" timestamp="1608602011885" />
     <state x="790" y="504" width="342" height="238" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1608939825230">
@@ -390,10 +396,10 @@
     <state x="500" y="152" width="854" height="688" key="find.popup/0.25.1920.1175@0.25.1920.1175" timestamp="1608920804919" />
     <state x="783" y="205" width="1337" height="976" key="find.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608793179949" />
     <state x="783" y="205" width="1337" height="976" key="find.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1608597977478" />
-    <state x="266" y="298" width="670" height="477" key="search.everywhere.popup" timestamp="1608932616793">
+    <state x="266" y="298" width="670" height="477" key="search.everywhere.popup" timestamp="1608992298624">
       <screen x="0" y="25" width="1920" height="1175" />
     </state>
-    <state x="266" y="298" width="670" height="477" key="search.everywhere.popup/0.25.1920.1175@0.25.1920.1175" timestamp="1608932616793" />
+    <state x="266" y="298" width="670" height="477" key="search.everywhere.popup/0.25.1920.1175@0.25.1920.1175" timestamp="1608992298624" />
     <state x="417" y="413" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608794077133" />
     <state x="417" y="413" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1608600604734" />
   </component>
