@@ -2,6 +2,8 @@
 
 namespace App\Actions\Customer;
 
+use App\Exceptions\GracefulDetailedException;
+use App\Helpers\TextFormatting;
 use App\Models\Customer;
 use App\Http\Traits\Actions\ModelActionBase;
 use App\Http\Traits\Actions\ResponseMessage;
@@ -18,23 +20,35 @@ class UpdateCustomer
     use ResponseMessage;
 
     /**
+     * @param array $data
+     */
+    protected function setParameters(array $data): void
+    {
+        $this->data = [
+            'name' => $data['name'] ?? '',
+            'cnpj' => $data['cnpj'] ?? '',
+        ];
+    }
+
+    /**
      * @return bool|array
      * @throws Exception
      */
     protected function main()
     {
-        $this->validation();
         try {
-            $data = $this->request->all();
+            $this->validation();
 
-            $this->actionRecord->name = $data['name'];
-            $this->actionRecord->cnpj = $data['cnpj'];
+            $this->actionRecord->name = $this->data['name'];
+            $this->actionRecord->cnpj = $this->data['cnpj'];
 
             $this->actionRecord->save();
 
-            return redirect()->back()->with('message', 'Cliente atualizado com sucesso.');
+            return $this->responseSuccess('Cliente atualizado com sucesso');
+        } catch (GracefulDetailedException $e) {
+            return $this->responseFailure('inputError', $e->getMessage(), ['errors' => $e->getDetails()] ?? []);
         } catch (Exception $e) {
-            return redirect()->back()->with('errorMessage', $e->getMessage());
+            return $this->responseFailure('error', $e->getMessage());
         }
     }
 
@@ -43,9 +57,15 @@ class UpdateCustomer
      */
     private function validation()
     {
-        Validator::make($this->request->all(), [
+        $validator = Validator::make($this->data, [
             'name' => ['required', 'string', 'max:255'],
             'cnpj' => ['required', 'cnpj', 'unique:customers,cnpj,'.$this->actionRecord->id, 'max:18'],
-        ])->validate();
+        ]);
+
+        if ($validator->fails()) {
+            throw new GracefulDetailedException('Dados inválidos',
+                TextFormatting::getErrorsToArray($validator)
+            );
+        }
     }
 }

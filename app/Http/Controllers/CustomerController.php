@@ -44,7 +44,7 @@ class CustomerController extends Controller
      */
     public function update(Customer $customer, Request $request)
     {
-        return (new UpdateCustomer())->execute($customer, $request);
+        return (new UpdateCustomer())->execute($customer, $request->all());
     }
 
     /**
@@ -54,7 +54,7 @@ class CustomerController extends Controller
      * @throws \Exception
      */
     public function delete(Customer $customer, Request $request) {
-        return (new DeleteCustomer())->execute($customer, $request);
+        return (new DeleteCustomer())->execute($customer, $request->all());
     }
 
     /**
@@ -65,6 +65,6 @@ class CustomerController extends Controller
      */
     public function active(Customer $customer, Request $request)
     {
-        return (new ActiveCustomer())->execute($customer, $request);
+        return (new ActiveCustomer())->execute($customer, $request->all());
     }
 }

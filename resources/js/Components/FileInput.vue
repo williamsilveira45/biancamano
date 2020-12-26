@@ -3,17 +3,13 @@
         <div class="flex">
             <div class="flex-1">
                 <v-select :options="customers" placeholder="Selecione um cliente" append-to-body v-model="customer_id"></v-select>
-<!--                <select v-model="customer_id" name="customer_id" class="border bg-white rounded px-3 py-2 outline-none">-->
-<!--                    <option value="0" selected="selected">Selecione um Cliente</option>-->
-<!--                    <option v-for="(item, index) in customers" :value="index">{{ item }}</option>-->
-<!--                </select>-->
             </div>
             <div class="flex-5 ml-3">
                 <file-upload
                     ref="upload"
                     v-model="files"
                     post-action="/files/upload"
-                    :data="{customer_id: customer_id}"
+                    :data="{customer_id: customer_id.code}"
                     :headers="headers"
                     @input-file="inputFile"
                     @input-filter="inputFilter"
@@ -58,7 +54,7 @@
 <script>
 import Vue from 'vue';
 import FileUpload from 'vue-upload-component/src'
-import swal from "sweetalert";
+import Swal from 'sweetalert2'
 import ProgressBar from 'vue-simple-progress';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import vSelect from "vue-select";
@@ -92,6 +88,7 @@ export default {
         ProgressBar,
         FontAwesomeIcon,
         vSelect,
+        Swal,
     },
     methods: {
         /**
@@ -104,10 +101,10 @@ export default {
             if (newFile && oldFile && !newFile.active && oldFile.active) {
                 // Get response data
                 if (newFile.response.success) {
-                    swal("Sucesso!", newFile.response.message, "success");
-                    this.$parent.atualizarTabela();
+                    Swal.fire("Sucesso!", newFile.response.message, "success");
+                    this.$emit('refresh-table');
                 } else {
-                    swal("Erro", newFile.response.message, "error");
+                    Swal.fire("Erro", newFile.response.message, "error");
                 }
 
                 if (newFile.xhr) {
@@ -125,7 +122,7 @@ export default {
          */
         inputFilter: function (newFile, oldFile, prevent) {
             if (this.customer_id < 1) {
-                swal("Erro", 'Você precisa selecionar um cliente antes', "error");
+                Swal.fire("Erro", 'Você precisa selecionar um cliente antes', "error");
                 return prevent()
             }
 

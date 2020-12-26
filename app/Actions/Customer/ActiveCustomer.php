@@ -19,6 +19,16 @@ class ActiveCustomer
     use ResponseMessage;
 
     /**
+     * @param array $data
+     */
+    protected function setParameters(array $data): void
+    {
+        $this->data = [
+            'active' => $data['active'] ?? false
+        ];
+    }
+
+    /**
      * @return bool|array
      * @throws Exception
      */
@@ -27,7 +37,7 @@ class ActiveCustomer
         try {
             $this->validateInputs();
             $this->update();
-            $text = $this->request->input('active') ? 'Ativado com sucesso' : 'Desativado com sucesso';
+            $text = $this->data['active'] ? 'Ativado com sucesso' : 'Desativado com sucesso';
 
             return $this->responseSuccess($text);
         } catch (Exception $e) {
@@ -40,7 +50,7 @@ class ActiveCustomer
      */
     private function update()
     {
-        $this->actionRecord->active = $this->request->input('active');
+        $this->actionRecord->active = $this->data['active'];
         $this->actionRecord->save();
     }
 
@@ -54,7 +64,7 @@ class ActiveCustomer
         }
 
         $validator = Validator::make(
-            $this->request->all(),
+            $this->data,
             [
                 'active' => 'required|boolean',
             ]

@@ -115,29 +115,91 @@ class ParseCsvFile implements ShouldQueue
 
             $name = preg_replace('/[^a-zA-Z0-9_ -]/s', '', $this->data[1]);
 
-            TrialData::create([
-                'codigo' => (int)$this->data[0],
-                'cliente' => $name,
-                'documento' => $this->data[2],
-                'emissao_nota' => new Carbon($this->data[3]),
-                'data_vencimento_original' => new Carbon($this->data[4]),
-                'data_vencimento' => new Carbon($this->data[5]),
-                'competencia' => new Carbon($this->data[6]),
-                'natureza_financeira' => $this->data[7],
-                'operacao' => $this->data[8],
-                'titulo_pago' => $this->data[9],
-                'valor_original' => (float)$this->data[10],
-                'multa_aplicada' => (float)$this->data[11],
-                'juros_aplicada' => (float)$this->data[12],
-                'desconto_aplicado' => (float)$this->data[13],
-                'valor_recebido' => (float)$this->data[14],
-                'data_entrada' => new Carbon($this->data[15]),
-                'emissora_titulo' => $this->data[16],
-                'emissora_nota' => $this->data[17],
-                'id_titulo' => (int)$this->data[18],
-                'file_checksum' => $this->file->sha1_checksum,
-                'counter_id' => $xCounter,
-            ]);
+            $date3 = new Carbon($this->data[3]);
+            $date4 = new Carbon($this->data[4]);
+            $date5 = new Carbon($this->data[5]);
+            $date6 = new Carbon($this->data[6]);
+            $date15 = new Carbon($this->data[15]);
+
+            $sql = "INSERT INTO trial_data (
+                    codigo,
+                    cliente,
+                    documento,
+                    emissao_nota,
+                    data_vencimento_original,
+                    data_vencimento,
+                    competencia,
+                    natureza_financeira,
+                    operacao,
+                    titulo_pago,
+                    valor_original,
+                    multa_aplicada,
+                    juros_aplicada,
+                    desconto_aplicado,
+                    valor_recebido,
+                    data_entrada,
+                    emissora_titulo,
+                    emissora_nota,
+                    id_titulo,
+                    created_at,
+                    updated_at,
+                    file_checksum,
+                    counter_id
+                    ) VALUES (
+                    " . (int)$this->data[0] . ",
+                    '" . $name . "',
+                    '" . $this->data[2] . "',
+                    '" . $date3->toDateTimeString() . "',
+                    '" . $date4->toDateTimeString() . "',
+                    '" . $date5->toDateTimeString() . "',
+                    '" . $date6->toDateTimeString() . "',
+                    '" . $this->data[7] . "',
+                    '" . $this->data[8] . "',
+                    '" . $this->data[9] . "',
+                    '" . (float)$this->data[10] . "',
+                    '" . (float)$this->data[11] . "',
+                    '" . (float)$this->data[12] . "',
+                    '" . (float)$this->data[13] . "',
+                    '" . (float)$this->data[14] . "',
+                    '" . $date15->toDateTimeString() . "',
+                    '" . $this->data[16] . "',
+                    '" . $this->data[17] . "',
+                    " . (int)$this->data[18] . ",
+                    '" . now()->toDateTimeString() . "',
+                    '" . now()->toDateTimeString() . "',
+                    '" . $this->file->sha1_checksum . "',
+                    " . (int)$xCounter . ")";
+
+            DB::unprepared($sql);
+
+//            TrialData::create([
+//            $dataToImport[] = [
+//                'codigo' => (int)$this->data[0],
+//                'cliente' => $name,
+//                'documento' => $this->data[2],
+//                'emissao_nota' => new Carbon($this->data[3]),
+//                'data_vencimento_original' => new Carbon($this->data[4]),
+//                'data_vencimento' => new Carbon($this->data[5]),
+//                'competencia' => new Carbon($this->data[6]),
+//                'natureza_financeira' => $this->data[7],
+//                'operacao' => $this->data[8],
+//                'titulo_pago' => $this->data[9],
+//                'valor_original' => (float)$this->data[10],
+//                'multa_aplicada' => (float)$this->data[11],
+//                'juros_aplicada' => (float)$this->data[12],
+//                'desconto_aplicado' => (float)$this->data[13],
+//                'valor_recebido' => (float)$this->data[14],
+//                'data_entrada' => new Carbon($this->data[15]),
+//                'emissora_titulo' => $this->data[16],
+//                'emissora_nota' => $this->data[17],
+//                'id_titulo' => (int)$this->data[18],
+//                'file_checksum' => $this->file->sha1_checksum,
+//                'counter_id' => $xCounter,
+//            ];
+//
+//            DB::table('trial_data')->insert($dataToImport);
+
+//            ]);
 
             if ($toImport === self::EACH_COMMIT) {
                 DB::commit();
@@ -149,6 +211,7 @@ class ParseCsvFile implements ShouldQueue
 
         DB::select(DB::raw('call SumarizarVencimento("' . $this->file->sha1_checksum . '")'));
 
+        DB::commit();
         $this->updateFileStatus('Processado');
     }
 

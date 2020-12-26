@@ -145,6 +145,7 @@ import SwitchActive from "@/Components/SwitchActive";
 import Vuetable from "vuetable-2";
 import VuetablePagination from "vuetable-2/src/components/VuetablePagination";
 import VuetablePaginationInfo from "vuetable-2/src/components/VuetablePaginationInfo";
+import Vue from "vue";
 
 export default {
     props: ['customers'],
@@ -266,12 +267,23 @@ export default {
             })
         },
         updateCustomer() {
-            this.$inertia.put('/customers/' + this.idreg, this.form).then( () => {
-                if (Object.keys(this.$page.errors).length === 0 && this.$page.flash.errorMessage === null) {
+            this.resetErrors();
+            axios.put("/customers/" + this.idreg, this.form).then( (response) => {
+                const { data } = response;
+
+                if (data.success) {
                     this.reset();
                     this.closeModal();
                     this.refreshTable();
+                    this.successMsg = data.message;
+                    return;
                 }
+
+                if (!data.success && data.type === 'inputError') {
+                    this.errors = data.errors;
+                }
+
+                this.errorMsg = data.message;
             })
         },
         reset() {
@@ -304,13 +316,24 @@ export default {
                 confirmButtonText: 'Sim, deletar!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    this.$inertia.delete('/customers/' + id);
-                    Swal.fire(
-                        'Deletado!',
-                        'Registro deletado com sucesso.',
-                        'success'
-                    )
-                    this.refreshTable();
+                    axios.delete('/customers/' + id).then(response => {
+                        const { data } = response;
+                        if (data.success === true) {
+                            Vue.$toast.success(data.message, {
+                                duration: 3000,
+                                position: 'top-right',
+                                dismissible: true,
+                            });
+                            this.refreshTable();
+                        }
+                    })
+                    .catch(error => {
+                        Vue.$toast.error(error.message, {
+                            duration: 3000,
+                            position: 'top-right',
+                            dismissible: true,
+                        });
+                    });
                 }
             })
         },

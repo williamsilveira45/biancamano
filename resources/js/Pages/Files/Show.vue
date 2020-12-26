@@ -8,10 +8,10 @@
 
         <div class="py-5">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert" v-if="$page.flash.message">
+                <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert" v-if="successMsg.length">
                     <div class="flex">
                         <div>
-                            <p class="text-sm">{{ $page.flash.message }}</p>
+                            <p class="text-sm">{{ successMsg }}</p>
                         </div>
                     </div>
                 </div>
@@ -82,10 +82,10 @@
             </template>
             <template #content>
                 <div>
-                    <div class="bg-red-100 border-t-4 border-red-500 rounded-b text-red-900 px-4 py-3 shadow-md" role="alert" v-if="$page.flash.errorMessage">
+                    <div class="bg-red-100 border-t-4 border-red-500 rounded-b text-red-900 px-4 py-3 shadow-md" role="alert" v-if="errorMsg.length">
                         <div class="flex">
                             <div>
-                                <p class="text-sm">{{ $page.flash.errorMessage }}</p>
+                                <p class="text-sm">{{ errorMsg }}</p>
                             </div>
                         </div>
                     </div>
@@ -96,6 +96,7 @@
                             </label>
                             <div class="mt-1">
                                 <file-input
+                                    @refresh-table="refreshTable"
                                     ref="uploadfile"
                                     :customers="$page.customers" :csrf="$page.csrf"></file-input>
                             </div>
@@ -115,7 +116,6 @@
 
 
 <script>
-import Vue from 'vue';
 import AppLayout from '@/Layouts/AppLayout'
 import Welcome from '@/Jetstream/Welcome'
 import JetSecondaryButton from '@/Jetstream/SecondaryButton'
@@ -125,13 +125,11 @@ import JetButton from "@/Jetstream/Button";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetDangerButton from "@/Jetstream/DangerButton";
 import JetInputError from "@/Jetstream/InputError";
-import Swal from 'sweetalert2'
 import SwitchActive from "@/Components/SwitchActive";
 import Vuetable from "vuetable-2";
 import VuetablePagination from "vuetable-2/src/components/VuetablePagination";
 import VuetablePaginationInfo from "vuetable-2/src/components/VuetablePaginationInfo";
 import FileInput from "@/Components/FileInput";
-
 
 export default {
     props: ['customers'],
@@ -152,6 +150,9 @@ export default {
     },
     data() {
         return {
+            successMsg: '',
+            errorMsg: '',
+            errors: {},
             data: [],
             perPage: 10,
             search: '',
@@ -160,7 +161,7 @@ export default {
             modal: false,
             fields: [{
                 name: 'name',
-                title: 'Nome',
+                title: 'Nome Arquivo',
                 sortField: 'name'
             },
             {
@@ -230,31 +231,8 @@ export default {
         openModal() {
             this.modal = true;
         },
-        closeModal(reset) {
+        closeModal() {
             this.modal = false;
-            if (reset) {
-                this.edit = false;
-            }
-        },
-        deleteCustomer(id) {
-            Swal.fire({
-                title: 'Você tem certeza?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sim, deletar!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    this.$inertia.delete('/files/' + id);
-                    Swal.fire(
-                        'Deletado!',
-                        'Registro deletado com sucesso.',
-                        'success'
-                    )
-                    this.refreshTable();
-                }
-            })
         },
         refreshTable () {
             this.$nextTick(() => this.$refs.vuetable.refresh());

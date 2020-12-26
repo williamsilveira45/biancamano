@@ -24,9 +24,14 @@ class DeleteCustomer
     {
         try {
             $this->actionRecord->delete();
-            return redirect()->back()->with('message', 'Cliente deletado com sucesso');
+            return $this->responseSuccess('Cliente removido com sucesso');
         } catch (Exception $e) {
-            return redirect()->back()->with('errorMessage', $e->getMessage());
+            return $this->responseFailure($e->getMessage());
         }
+    }
+
+    protected function setParameters(array $data): void
+    {
+        // TODO: Implement setParameters() method.
     }
 }
