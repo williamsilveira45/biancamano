@@ -2,8 +2,9 @@
 namespace App\Jobs;
 
 set_time_limit(0);
+
+use App\Events\SendNotification;
 use App\Models\File;
-use App\Models\TrialData;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -88,6 +89,12 @@ class ParseCsvFile implements ShouldQueue
 
         } catch (\Exception $e) {
             $this->updateFileStatus('Erro ao Processar');
+            broadcast(new SendNotification([
+                'title' => 'Erro ao processar o arquivo' . $this->file->name . ':'. $e->getMessage(),
+                'body' => 'Erro ao processar o arquivo' . $this->file->name . ':'. $e->getMessage(),
+                'type' => 'error',
+                'duration' => 300000,
+            ]));
             dump($e->getMessage(), $this->data);
         }
     }
@@ -172,35 +179,6 @@ class ParseCsvFile implements ShouldQueue
 
             DB::unprepared($sql);
 
-//            TrialData::create([
-//            $dataToImport[] = [
-//                'codigo' => (int)$this->data[0],
-//                'cliente' => $name,
-//                'documento' => $this->data[2],
-//                'emissao_nota' => new Carbon($this->data[3]),
-//                'data_vencimento_original' => new Carbon($this->data[4]),
-//                'data_vencimento' => new Carbon($this->data[5]),
-//                'competencia' => new Carbon($this->data[6]),
-//                'natureza_financeira' => $this->data[7],
-//                'operacao' => $this->data[8],
-//                'titulo_pago' => $this->data[9],
-//                'valor_original' => (float)$this->data[10],
-//                'multa_aplicada' => (float)$this->data[11],
-//                'juros_aplicada' => (float)$this->data[12],
-//                'desconto_aplicado' => (float)$this->data[13],
-//                'valor_recebido' => (float)$this->data[14],
-//                'data_entrada' => new Carbon($this->data[15]),
-//                'emissora_titulo' => $this->data[16],
-//                'emissora_nota' => $this->data[17],
-//                'id_titulo' => (int)$this->data[18],
-//                'file_checksum' => $this->file->sha1_checksum,
-//                'counter_id' => $xCounter,
-//            ];
-//
-//            DB::table('trial_data')->insert($dataToImport);
-
-//            ]);
-
             if ($toImport === self::EACH_COMMIT) {
                 DB::commit();
                 $toImport = 0;
@@ -213,6 +191,12 @@ class ParseCsvFile implements ShouldQueue
 
         DB::commit();
         $this->updateFileStatus('Processado');
+        broadcast(new SendNotification([
+            'title' => $this->file->name . ' foi processado com sucesso.',
+            'body' => $this->file->name . ' foi processado com sucesso.',
+            'type' => 'success',
+            'duration' => 7500,
+        ]));
     }
 
     /**
@@ -291,6 +275,12 @@ class ParseCsvFile implements ShouldQueue
         $filename = Str::slug(explode('.', $this->file->name)[0]);
         Storage::put('/'.env('UPLOAD_PATH').'/'.$this->file->customer->hash.'/sqls/'.$filename.'.sql', $sql);
         $this->updateFileStatus('Processado');
+        broadcast(new SendNotification([
+            'title' => $this->file->name . ' foi processado com sucesso.',
+            'body' => $this->file->name . ' foi processado com sucesso.',
+            'type' => 'success',
+            'duration' => 7500,
+        ]));
     }
 
     private function reprocessFile()

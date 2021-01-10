@@ -1,6 +1,7 @@
 <template>
     <div class="min-h-screen bg-gray-100">
         <nav class="bg-white border-b border-gray-100">
+            <notifications/>
             <!-- Primary Navigation Menu -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
@@ -43,7 +44,7 @@
                                 </template>
 
                                 <template #content>
-                                    <jet-dropdown-link :href="route('sistema.pconta.show')">
+                                    <jet-dropdown-link :href="route('sistema.pconta.index')">
                                         Plano de Contas
                                     </jet-dropdown-link>
                                 </template>
@@ -243,9 +244,11 @@
     import JetDropdownLink from '@/Jetstream/DropdownLink'
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
+    import Notifications from "@/Components/Notifications";
 
     export default {
         components: {
+            Notifications,
             JetApplicationMark,
             JetDropdown,
             JetDropdownLink,

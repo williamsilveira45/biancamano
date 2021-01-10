@@ -34,6 +34,8 @@
         "@fortawesome/vue-fontawesome": "^0.1.9",
         "bootstrap": "^4.5.3",
         "bootstrap-vue": "^2.21.1",
+        "socket.io-client": "^2.3.0",
+        "laravel-echo": "^1.7.0",
         "font-awesome": "^4.7.0",
         "moment": "^2.29.1",
         "sweetalert": "^2.1.2",

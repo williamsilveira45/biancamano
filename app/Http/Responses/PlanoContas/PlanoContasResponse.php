@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Responses\PlanoContas;
-use App\Models\Customer;
 use App\Models\PlanoConta;
 use Illuminate\Contracts\Support\Responsable;
 
@@ -14,7 +13,7 @@ class PlanoContasResponse implements Responsable
     public function toResponse($request)
     {
         $sort = empty($request->input('sort'))
-            ? explode('|', 'name|asc')
+            ? explode('|', 'nome_conta|asc')
             : explode('|', $request->input('sort'));
         $perpage = $request->input('per_page');
 
@@ -45,8 +44,7 @@ class PlanoContasResponse implements Responsable
     protected function search($search, $perpage, $sort)
     {
         return PlanoConta::where('id', $search)
-            ->orWhere('name', 'LIKE', '%'.$search.'%')
-            ->orWhere('cnpj', $search)
+            ->orWhere('nome_conta', 'LIKE', '%'.$search.'%')
             ->orderBy($sort[0], $sort[1])
             ->paginate($perpage);
     }

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Customer\ActiveCustomer;
-use App\Actions\Customer\CreateCustomer;
-use App\Actions\Customer\DeleteCustomer;
-use App\Actions\Customer\UpdateCustomer;
-use App\Models\Customer;
-use App\Http\Responses\Customers\PlanoContasResponse;
+use App\Actions\PlanoContas\CreateConta;
+use App\Actions\PlanoContas\DeleteConta;
+use App\Actions\PlanoContas\UpdateConta;
+use App\Http\Responses\PlanoContas\PlanoContasResponse;
+use App\Models\PlanoConta;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -18,7 +17,7 @@ class PlanoContasController extends Controller
      */
     public function show()
     {
-        return Inertia::render('Customers/Show');
+        return Inertia::render('PlanoContas/Show');
     }
 
     public function json()
@@ -33,38 +32,27 @@ class PlanoContasController extends Controller
      */
     public function store(Request $request)
     {
-        return (new CreateCustomer())->execute($request->all());
+        return (new CreateConta())->execute($request->all());
     }
 
     /**
-     * @param Customer $customer
+     * @param PlanoConta $conta
      * @param Request $request
      * @return mixed
      * @throws \Exception
      */
-    public function update(Customer $customer, Request $request)
+    public function update(PlanoConta $conta, Request $request)
     {
-        return (new UpdateCustomer())->execute($customer, $request->all());
+        return (new UpdateConta())->execute($conta, $request->all());
     }
 
     /**
-     * @param Customer $customer
+     * @param PlanoConta $conta
      * @param Request $request
      * @return bool
      * @throws \Exception
      */
-    public function delete(Customer $customer, Request $request) {
-        return (new DeleteCustomer())->execute($customer, $request->all());
-    }
-
-    /**
-     * @param Customer $customer
-     * @param Request $request
-     * @return bool
-     * @throws \Exception
-     */
-    public function active(Customer $customer, Request $request)
-    {
-        return (new ActiveCustomer())->execute($customer, $request->all());
+    public function delete(PlanoConta $conta, Request $request) {
+        return (new DeleteConta())->execute($conta, $request->all());
     }
 }

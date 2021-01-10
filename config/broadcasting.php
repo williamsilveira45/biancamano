@@ -35,9 +35,14 @@ return [
             'key' => env('PUSHER_APP_KEY'),
             'secret' => env('PUSHER_APP_SECRET'),
             'app_id' => env('PUSHER_APP_ID'),
+//            'options' => [
+//                'cluster' => env('PUSHER_APP_CLUSTER'),
+//                'useTLS' => true,
+//            ],
             'options' => [
-                'cluster' => env('PUSHER_APP_CLUSTER'),
-                'useTLS' => true,
+                'host' => env('LARAVEL_ECHO_SERVER_HOST', 'localhost'),
+                'port' => env('LARAVEL_ECHO_SERVER_PORT', 6001),
+                'scheme' => env('LARAVEL_ECHO_SERVER_PROTO', 'https'),
             ],
         ],
 
@@ -49,6 +54,28 @@ return [
         'redis' => [
             'driver' => 'redis',
             'connection' => 'default',
+            'client' => env('REDIS_CLIENT', 'phpredis'),
+
+            'options' => [
+                'cluster' => env('REDIS_CLUSTER', 'redis'),
+                'prefix' => '',
+            ],
+
+            'default' => [
+                'url' => env('REDIS_URL'),
+                'host' => env('REDIS_HOST', '127.0.0.1'),
+                'password' => env('REDIS_PASSWORD', null),
+                'port' => env('REDIS_PORT', '6379'),
+                'database' => env('REDIS_DB', '0'),
+            ],
+
+            'cache' => [
+                'url' => env('REDIS_URL'),
+                'host' => env('REDIS_HOST', '127.0.0.1'),
+                'password' => env('REDIS_PASSWORD', null),
+                'port' => env('REDIS_PORT', '6379'),
+                'database' => env('REDIS_CACHE_DB', '1'),
+            ],
         ],
 
         'log' => [

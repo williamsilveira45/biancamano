@@ -2,6 +2,7 @@
 
 namespace App\Actions\File;
 
+use App\Events\SendNotification;
 use App\Models\Customer;
 use App\Models\File;
 use App\Helpers\TextFormatting;
@@ -45,8 +46,14 @@ class Upload
             $path = $this->uploadFile();
             $fileReg = $this->register($path);
 
+            broadcast(new SendNotification([
+                'title' => $this->data['file']->getClientOriginalName() . ' começou a ser processado.',
+                'body' => $this->data['file']->getClientOriginalName() . ' começou a ser processado.',
+                'type' => 'info',
+                'duration' => 7500,
+            ]));
             //run import job
-            //ParseCsvFile::dispatch($fileReg);
+            ParseCsvFile::dispatch($fileReg);
 
             return $this->responseSuccess('Arquivo enviado com sucesso, iniciando processo de registro dos dados...');
         } catch (Exception $exception) {

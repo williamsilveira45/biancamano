@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
     Route::get('/dashboard', function () {
         return Inertia\Inertia::render('Dashboard');
     })->name('dashboard');
@@ -36,8 +37,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/', 'FileController@show')->name('index');
         Route::get('/json', 'FileController@json')->name('json');
         Route::post('/upload', 'FileController@upload')->name('upload');
-        Route::delete('/{customer}', 'FileController@delete')->name('delete');
-        Route::put('/{customer}', 'FileController@update')->name('update');
+        Route::delete('/{file}', 'FileController@delete')->name('delete');
+        Route::put('/{file}', 'FileController@update')->name('update');
     });
 
     Route::prefix('/sistema')->name('sistema.')->group(function () {
@@ -46,8 +47,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::get('/json', 'PlanoContasController@json')->name('json');
             Route::get('/create', 'PlanoContasController@create')->name('create');
             Route::post('/store', 'PlanoContasController@store')->name('store');
-            Route::delete('/{customer}', 'PlanoContasController@delete')->name('delete');
-            Route::put('/{customer}', 'PlanoContasController@update')->name('update');
+            Route::delete('/{pconta}', 'PlanoContasController@delete')->name('delete');
+            Route::put('/{pconta}', 'PlanoContasController@update')->name('update');
         });
     });
 });

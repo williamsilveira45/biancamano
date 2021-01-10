@@ -1,0 +1,40 @@
+{
+	"authHost": "biancamano.test",
+	"authEndpoint": "/broadcasting/auth",
+	"clients": [
+		{
+			"appId": "biancamanocap",
+			"key": "7b7ebe20155c2d5ff2f81632bc80467c"
+		}
+	],
+	"database": "redis",
+	"databaseConfig": {
+		"redis": {
+            "port": "6379",
+            "host": "127.0.0.1"
+        },
+		"sqlite": {
+			"databasePath": "/database/laravel-echo-server.sqlite"
+		}
+	},
+	"devMode": "true",
+	"host": "localhost",
+	"port": "6001",
+	"protocol": "https",
+	"socketio": {},
+	"secureOptions": 67108864,
+	"sslCertPath": "/Users/william/.config/valet/Certificates/biancamano.test.crt",
+	"sslKeyPath": "/Users/william/.config/valet/Certificates/biancamano.test.key",
+	"sslCertChainPath": "",
+	"sslPassphrase": "",
+	"subscribers": {
+		"http": true,
+		"redis": true
+	},
+	"apiOriginAllow": {
+		"allowCors": true,
+		"allowOrigin": "*",
+		"allowMethods": "GET, POST",
+		"allowHeaders": "Origin, Content-Type, X-Auth-Token, X-Requested-With, Accept, Authorization, X-CSRF-TOKEN, X-Socket-Id"
+	}
+}

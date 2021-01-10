@@ -39,7 +39,7 @@ class UpdateCustomer
         try {
             $this->validation();
 
-            $this->actionRecord->name = $this->data['name'];
+            $this->actionRecord->name = strtoupper($this->data['name']);
             $this->actionRecord->cnpj = $this->data['cnpj'];
 
             $this->actionRecord->save();

@@ -171,6 +171,11 @@ export default {
                 formatter: this.sizeFormatter,
             },
             {
+                name: 'status',
+                title: 'Status',
+                sortField: 'status',
+            },
+            {
                 name: 'updated_at',
                 title: 'Atualizado em',
                 formatter: this.formatDate,

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Customer;
 use App\Models\File;
+use App\Models\PlanoConta;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -46,6 +47,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::model('user', User::class);
             Route::model('customer', Customer::class);
             Route::model('file', File::class);
+            Route::model('pconta', PlanoConta::class);
 
             Route::middleware('web')
                 ->namespace($this->namespace) // Assigning namespace
