@@ -21,6 +21,17 @@ class CustomerController extends Controller
         return Inertia::render('Customers/Show');
     }
 
+    /**
+     * @param Customer $customer
+     * @return \Inertia\Response
+     */
+    public function config(Customer $customer)
+    {
+        return Inertia::render('Customers/Config', [
+            'customer' => $customer,
+        ]);
+    }
+
     public function json()
     {
         return new CustomersListResponse();

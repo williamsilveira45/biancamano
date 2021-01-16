@@ -2,7 +2,7 @@
     <app-layout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Clientes
+                <a href="#" style="color: #20a1ff;" @click.prevent="() => backPage()">< Voltar</a>
             </h2>
         </template>
 
@@ -153,7 +153,7 @@ import VuetablePaginationInfo from "vuetable-2/src/components/VuetablePagination
 import Vue from "vue";
 
 export default {
-    props: ['customers'],
+    props: ['customersconfig'],
     components: {
         AppLayout,
         Welcome,
@@ -246,9 +246,12 @@ export default {
             appendParams: {},
         }
     },
+    mounted() {
+      console.log(this.$page);
+    },
     methods: {
-        redirectPage(customerId) {
-            window.location.href="/customers/"+customerId+"/config";
+        backPage() {
+            window.history.back();
         },
         formatDate (value) {
             if (value === null) return '-';
