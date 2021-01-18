@@ -73,7 +73,7 @@ class Upload
             ->exists();
 
         if ($file) {
-            throw new Exception('Esse arquivo já foi upado');
+            throw new Exception('Esse já existe no servidor');
         }
     }
 

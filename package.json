@@ -41,9 +41,9 @@
         "sweetalert": "^2.1.2",
         "sweetalert2": "^10.12.5",
         "v-mask": "^2.2.3",
+        "vue-csv-import": "^3.3.5",
         "vue-select": "^3.11.2",
         "vue-simple-progress": "^1.1.1",
-        "vue-tabs-component": "^1.5.0",
         "vue-toast-notification": "^0.4.0",
         "vue-upload-component": "^2.8.20",
         "vuetable-2": "^2.0.0-beta.4"
