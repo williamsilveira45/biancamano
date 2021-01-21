@@ -34,6 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::prefix('/{customer}/config')->name('customers.')->group(function () {
             Route::get('/', 'CustomerConfigController@config')->name('config');
             Route::post('/readfile', 'CustomerConfigController@readfile')->name('readfile');
+            Route::post('/regcontas', 'CustomerConfigController@regcontas')->name('regcontas');
         });
     });
 

@@ -50,11 +50,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(conta, index) in contas">
+                <tr v-for="(conta, index) in contas" :key="index">
                     <td>{{conta}}</td>
                     <td>
-                        <input type="hidden" value="conta" v-model="conta_index" />
-                        <select v-model="conta_sistema">
+                        <select style="border: 1px solid #CCC;" class="p-1" v-model="conta_sistema[index]">
                             <option
                                 v-for="p in plano_contas"
                                 :value="p"
@@ -64,6 +63,10 @@
                 </tr>
             </tbody>
         </table>
+
+        <jet-button @click.native="sendToDB">
+            Associar Planos de Conta
+        </jet-button>
     </div>
 </div>
 </template>
@@ -74,6 +77,7 @@ import {VueCsvToggleHeaders, VueCsvSubmit, VueCsvMap, VueCsvInput, VueCsvErrors,
 import JetButton from "@/Jetstream/Button";
 import JetDangerButton from "@/Jetstream/DangerButton";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
+import Swal from 'sweetalert2'
 
 
 export default {
@@ -90,12 +94,12 @@ export default {
         JetButton,
         JetDangerButton,
         JetSecondaryButton,
+        Swal,
     },
     data() {
         return {
             csv: '',
             contas: [],
-            conta_index: [],
             conta_sistema: [],
         };
     },
@@ -104,6 +108,29 @@ export default {
             if (type === 'callback') {
                 this.contas = data.data[0];
             }
+        },
+        sendToDB() {
+            let url = `/customers/${this.customer.id}/config/regcontas`;
+            axios.post(url, {
+                contas: this.contas,
+                contas_sistema: this.conta_sistema,
+            })
+            .then(response => {
+                console.log(response);
+                // if (response.data.success===true) {
+                    // Swal.fire("Sucesso!", newFile.response.message, "success");
+                // } else {
+                //     Swal.fire("Erro", newFile.response.message, "error");
+                // }
+            })
+            .catch(error => {
+                console.log(error);
+                // Vue.$toast.error(error.message, {
+                //     duration: 3000,
+                //     position: 'top-right',
+                //     dismissible: true,
+                // });
+            });
         }
     }
 }

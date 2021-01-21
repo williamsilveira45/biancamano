@@ -40,4 +40,12 @@ class CustomerConfigController extends Controller
         }
         return response()->json([$x]);
     }
+
+    /**
+     * @param Request $request
+     */
+    public function regcontas(Request $request) {
+
+        dd($request->all());
+    }
 }
