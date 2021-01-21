@@ -32,7 +32,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::put('/{customer}', 'CustomerController@update')->name('update');
         Route::post('/active/{customer}', 'CustomerController@active')->name('active');
         Route::prefix('/{customer}/config')->name('customers.')->group(function () {
-            Route::get('/', 'CustomerController@config')->name('config');
+            Route::get('/', 'CustomerConfigController@config')->name('config');
+            Route::post('/readfile', 'CustomerConfigController@readfile')->name('readfile');
         });
     });
 

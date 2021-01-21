@@ -30,7 +30,7 @@
 
                     <div id="panels">
                         <div v-for="(tab, index) in tabContent" class="tab-content py-5" v-bind:class="[index === currentTab ? 'active' : null]">
-                            <component :is="tab" :customer="$page.customer"></component>
+                            <component :is="tab" :customer="$page.customer" :plano_contas="$page.plano_contas"></component>
                         </div>
                     </div>
                 </div>

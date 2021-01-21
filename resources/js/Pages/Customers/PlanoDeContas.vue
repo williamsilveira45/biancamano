@@ -2,12 +2,14 @@
 <div>
     <vue-csv-import
         v-model="csv"
-        :url="'/customers/'+$page.customer.id+'/arquivo'"
+        :url="'/customers/'+$page.customer.id+'/config/readfile'"
         :map-fields="['Conta']"
         :submit-btn-text="'Enviar'"
         :table-class="'vuetable w-8/12 border-b border-gray-100'"
-        :headers="false"
+        :headers="true"
         :file-mime-types="['text/csv']"
+        :callback="(data) => read(data, 'callback')"
+        :can-ignore="true"
     >
         <template slot="error">
             <div style="margin-top: 1em;margin-bottom: 1em;color:#F00;">
@@ -38,6 +40,31 @@
             </div>
         </template>
     </vue-csv-import>
+
+    <div class="mt-4 border-top-1" v-if="contas.length">
+        <table class="vuetable w-8/12 border-b border-gray-100">
+            <thead>
+                <tr>
+                    <th class="border-b border-gray-100 p-5">Arquivo CSV</th>
+                    <th class="border-b border-gray-100 p-5">Conta do Sistema</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(conta, index) in contas">
+                    <td>{{conta}}</td>
+                    <td>
+                        <input type="hidden" value="conta" v-model="conta_index" />
+                        <select v-model="conta_sistema">
+                            <option
+                                v-for="p in plano_contas"
+                                :value="p"
+                            >{{ p }}</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </template>
 
@@ -51,7 +78,7 @@ import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 
 export default {
     name: "PlanoDeContas",
-    props: ['customer'],
+    props: ['customer', 'plano_contas'],
     components: {
         Vue,
         VueCsvToggleHeaders,
@@ -67,7 +94,17 @@ export default {
     data() {
         return {
             csv: '',
+            contas: [],
+            conta_index: [],
+            conta_sistema: [],
         };
+    },
+    methods: {
+        read(data, type) {
+            if (type === 'callback') {
+                this.contas = data.data[0];
+            }
+        }
     }
 }
 </script>
