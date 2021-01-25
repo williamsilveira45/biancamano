@@ -55,8 +55,8 @@
                     <td>
                         <select style="border: 1px solid #CCC;" class="p-1" v-model="conta_sistema[index]">
                             <option
-                                v-for="p in plano_contas"
-                                :value="p"
+                                v-for="(p, pId) in plano_contas"
+                                :value="pId"
                             >{{ p }}</option>
                         </select>
                     </td>
@@ -116,20 +116,18 @@ export default {
                 contas_sistema: this.conta_sistema,
             })
             .then(response => {
-                console.log(response);
-                // if (response.data.success===true) {
-                    // Swal.fire("Sucesso!", newFile.response.message, "success");
-                // } else {
-                //     Swal.fire("Erro", newFile.response.message, "error");
-                // }
+                if (response.data.success===true) {
+                    Swal.fire("Sucesso!", response.response.message, "success");
+                } else {
+                    Swal.fire("Erro", response.response.message, "error");
+                }
             })
             .catch(error => {
-                console.log(error);
-                // Vue.$toast.error(error.message, {
-                //     duration: 3000,
-                //     position: 'top-right',
-                //     dismissible: true,
-                // });
+                Vue.$toast.error(error.message, {
+                    duration: 3000,
+                    position: 'top-right',
+                    dismissible: true,
+                });
             });
         }
     }

@@ -52,4 +52,12 @@ class Customer extends Model
     {
         return $this->hasMany(File::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contas()
+    {
+        return $this->hasMany(CustomerContas::class);
+    }
 }

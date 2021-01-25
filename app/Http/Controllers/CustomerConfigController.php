@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Customer\Config\RegisterContas;
 use App\Models\Customer;
 use App\Models\PlanoConta;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ class CustomerConfigController extends Controller
      */
     public function config(Customer $customer)
     {
+        $customer = $customer->with('contas')->first();
         $planoContas = PlanoConta::all()->pluck('nome_conta', 'id');
 
         return Inertia::render('Customers/Config', [
@@ -43,9 +45,10 @@ class CustomerConfigController extends Controller
 
     /**
      * @param Request $request
+     * @param Customer $customer
      */
-    public function regcontas(Request $request) {
-
-        dd($request->all());
+    public function regcontas(Request $request, Customer $customer)
+    {
+        return (new RegisterContas())->execute($customer, $request->all(['contas', 'contas_sistema']));
     }
 }
