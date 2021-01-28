@@ -117,9 +117,10 @@ export default {
             })
             .then(response => {
                 if (response.data.success===true) {
-                    Swal.fire("Sucesso!", response.response.message, "success");
+                    Swal.fire("Sucesso!", response.data.message, "success");
+
                 } else {
-                    Swal.fire("Erro", response.response.message, "error");
+                    Swal.fire("Erro", response.data.message, "error");
                 }
             })
             .catch(error => {
@@ -130,7 +131,7 @@ export default {
                 });
             });
         }
-    }
+    },
 }
 </script>
 

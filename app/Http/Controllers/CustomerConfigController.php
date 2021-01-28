@@ -28,15 +28,18 @@ class CustomerConfigController extends Controller
 
     /**
      * @param Request $request
+     * @param Customer $customer
      * @return void
      */
-    public function readfile(Request $request)
+    public function readfile(Request $request, Customer $customer)
     {
+        $contasEmUso = $customer->contas()->pluck('nome_sha1')->toArray();
+
         $data = $request->input('csv');
 
         $x = [];
         foreach ($data as $info) {
-            if (!in_array($info['Conta'], $x)) {
+            if (!in_array($info['Conta'], $x) && !in_array(sha1($info['Conta']), $contasEmUso)) {
                 $x[] = $info['Conta'];
             }
         }
