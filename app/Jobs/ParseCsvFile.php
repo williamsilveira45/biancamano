@@ -4,6 +4,7 @@ namespace App\Jobs;
 set_time_limit(0);
 
 use App\Events\SendNotification;
+use App\Models\Customer;
 use App\Models\File;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
@@ -27,6 +28,8 @@ class ParseCsvFile implements ShouldQueue
 
     private $file;
 
+    private $customerContas;
+
     /**
      * Create a new job instance.
      *
@@ -35,15 +38,18 @@ class ParseCsvFile implements ShouldQueue
     public function __construct(File $file)
     {
         $this->file = $file;
+        $this->customerContas = [];
     }
 
     /**
-     * Execute the job.
-     *
-     * @return void
+     * @return string
+     * @throws \Exception
      */
     public function handle()
     {
+        //load contas
+        $this->loadContas();
+
         $this->updateFileStatus('Processando');
 
         /**
@@ -90,13 +96,26 @@ class ParseCsvFile implements ShouldQueue
         } catch (\Exception $e) {
             $this->updateFileStatus('Erro ao Processar');
             broadcast(new SendNotification([
-                'title' => 'Erro ao processar o arquivo' . $this->file->name . ':'. $e->getMessage(),
-                'body' => 'Erro ao processar o arquivo' . $this->file->name . ':'. $e->getMessage(),
+                'title' => 'Erro ao processar o arquivo ' . $this->file->name . ': '. $e->getMessage(),
+                'body' => 'Erro ao processar o arquivo ' . $this->file->name . ': '. $e->getMessage(),
                 'type' => 'error',
                 'duration' => 300000,
             ]));
-            dump($e->getMessage(), $this->data);
+
+            throw $e;
         }
+    }
+
+    /**
+     *
+     */
+    private function loadContas()
+    {
+        if (!$this->file->customer instanceof Customer || empty($this->file->customer->contas)) {
+            return;
+        }
+
+        $this->customerContas = $this->file->customer->contas()->pluck('conta_id', 'nome_sha1');
     }
 
     /**
@@ -151,6 +170,8 @@ class ParseCsvFile implements ShouldQueue
                     created_at,
                     updated_at,
                     file_checksum,
+                    conta_id,
+                    conta_sha1,
                     counter_id
                     ) VALUES (
                     " . (int)$this->data[0] . ",
@@ -175,6 +196,8 @@ class ParseCsvFile implements ShouldQueue
                     '" . now()->toDateTimeString() . "',
                     '" . now()->toDateTimeString() . "',
                     '" . $this->file->sha1_checksum . "',
+                    " . ($this->customerContas[sha1($this->data[7])] ?? 0). ",
+                    '" . sha1($this->data[7]) . "',
                     " . (int)$xCounter . ")";
 
             DB::unprepared($sql);
@@ -242,6 +265,8 @@ class ParseCsvFile implements ShouldQueue
                         created_at,
                         updated_at,
                         file_checksum,
+                        conta_id,
+                        conta_sha1,
                         counter_id
                         ) VALUES (
                         " . (int)$this->data[0] . ",
@@ -265,7 +290,8 @@ class ParseCsvFile implements ShouldQueue
                         " . (int)$this->data[18] . ",
                         '" . new Carbon() . "',
                         '" . new Carbon() . "',
-                        '" . $this->file->sha1_checksum . "',
+                        " . ($this->customerContas[sha1($this->data[7])] ?? 0). ",
+                        '" . sha1($this->data[7]) . "',
                         " . (int)$xCounter . "
                         );\n";
 

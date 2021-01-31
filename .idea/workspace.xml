@@ -5,23 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bbf2762e-0f68-4046-8faf-8b603169fe1a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Actions/Customer/Config/ActiveConta.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Actions/Customer/Config/CreateCustomerConta.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Actions/Customer/Config/DeleteConta.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Actions/Customer/Config/UpdateCustomerConta.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerContasController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Responses/Customers/CustomersContasListResponse.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_30_113130_add_column_active_customer_contas_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_31_185253_add_columns_conta_id_and_conta_sha1_at_trial_data.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_31_191003_add_columns_conta_id_and_conta_sha1_at_sumarizada_vencimento.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bfba2ea9-e6e3-4c12-bacc-d4cc895c08b5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bfba2ea9-e6e3-4c12-bacc-d4cc895c08b5.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Actions/Customer/CreateCustomer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/Customer/CreateCustomer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerConfigController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerConfigController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/CustomerContas.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/CustomerContas.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/ParseCsvFile.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/ParseCsvFile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/StoreProc_Vencimento_Summaries.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/StoreProc_Vencimento_Summaries.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel-echo-server.lock" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-echo-server.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Customers/Config.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Customers/Config.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Customers/PlanoDeContas.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Customers/PlanoDeContas.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -264,7 +254,9 @@
       <workItem from="1611573411920" duration="41000" />
       <workItem from="1611786982332" duration="4658000" />
       <workItem from="1611833535245" duration="461000" />
-      <workItem from="1612011467280" duration="19005000" />
+      <workItem from="1612011467280" duration="19126000" />
+      <workItem from="1612126745865" duration="590000" />
+      <workItem from="1612127814536" duration="4780000" />
     </task>
     <task id="LOCAL-00001" summary="Working on crud">
       <created>1608430740482</created>
@@ -378,7 +370,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611792258913</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Adicionando CRUD para contas de customer">
+      <created>1612053874968</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1612053874968</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -402,7 +401,8 @@
     <MESSAGE value="Customer Contas" />
     <MESSAGE value="Trabalhando nas contas" />
     <MESSAGE value="Filtrando as contas em uso" />
-    <option name="LAST_COMMIT_MESSAGE" value="Filtrando as contas em uso" />
+    <MESSAGE value="Adicionando CRUD para contas de customer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adicionando CRUD para contas de customer" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1461" y="569" width="1071" height="720" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1612046650398">
@@ -427,11 +427,11 @@
     <state x="313" y="442" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.1920.1175@0.25.1920.1175" timestamp="1608915747652" />
     <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612053283964" />
     <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667@0.25.3008.1667" timestamp="1608594318510" />
-    <state x="337" y="431" key="CommitChangelistDialog2" timestamp="1611792258012">
+    <state x="337" y="431" key="CommitChangelistDialog2" timestamp="1612053874022">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="215" y="311" key="CommitChangelistDialog2/0.25.1920.1175@0.25.1920.1175" timestamp="1608996216363" />
-    <state x="337" y="431" key="CommitChangelistDialog2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1611792258012" />
+    <state x="337" y="431" key="CommitChangelistDialog2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612053874022" />
     <state x="1596" y="429" key="CommitChangelistDialog2/0.25.3008.1667@0.25.3008.1667" timestamp="1610932213455" />
     <state width="254" height="195" key="DatabaseViewActions_Filter" timestamp="1608919039473">
       <screen x="0" y="25" width="1920" height="1175" />
@@ -445,29 +445,29 @@
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="540" y="534" key="FileChooserDialogImpl/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608350409915" />
-    <state width="1000" height="484" key="GridCell.Tab.0.bottom" timestamp="1611067773784">
+    <state width="1000" height="484" key="GridCell.Tab.0.bottom" timestamp="1612131693546">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state width="1294" height="325" key="GridCell.Tab.0.bottom/0.25.1920.1175@0.25.1920.1175" timestamp="1608990984581" />
-    <state width="1000" height="484" key="GridCell.Tab.0.bottom/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1611067773784" />
+    <state width="1000" height="484" key="GridCell.Tab.0.bottom/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612131693546" />
     <state width="1000" height="484" key="GridCell.Tab.0.bottom/0.25.3008.1667@0.25.3008.1667" timestamp="1610304158411" />
-    <state width="1000" height="484" key="GridCell.Tab.0.center" timestamp="1611067773782">
+    <state width="1000" height="484" key="GridCell.Tab.0.center" timestamp="1612131693545">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state width="1294" height="325" key="GridCell.Tab.0.center/0.25.1920.1175@0.25.1920.1175" timestamp="1608990984580" />
-    <state width="1000" height="484" key="GridCell.Tab.0.center/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1611067773782" />
+    <state width="1000" height="484" key="GridCell.Tab.0.center/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612131693545" />
     <state width="1000" height="484" key="GridCell.Tab.0.center/0.25.3008.1667@0.25.3008.1667" timestamp="1610304158410" />
-    <state width="1000" height="484" key="GridCell.Tab.0.left" timestamp="1611067773781">
+    <state width="1000" height="484" key="GridCell.Tab.0.left" timestamp="1612131693544">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state width="1294" height="325" key="GridCell.Tab.0.left/0.25.1920.1175@0.25.1920.1175" timestamp="1608990984577" />
-    <state width="1000" height="484" key="GridCell.Tab.0.left/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1611067773781" />
+    <state width="1000" height="484" key="GridCell.Tab.0.left/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612131693544" />
     <state width="1000" height="484" key="GridCell.Tab.0.left/0.25.3008.1667@0.25.3008.1667" timestamp="1610304158410" />
-    <state width="1000" height="484" key="GridCell.Tab.0.right" timestamp="1611067773783">
+    <state width="1000" height="484" key="GridCell.Tab.0.right" timestamp="1612131693546">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state width="1294" height="325" key="GridCell.Tab.0.right/0.25.1920.1175@0.25.1920.1175" timestamp="1608990984580" />
-    <state width="1000" height="484" key="GridCell.Tab.0.right/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1611067773783" />
+    <state width="1000" height="484" key="GridCell.Tab.0.right/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612131693546" />
     <state width="1000" height="484" key="GridCell.Tab.0.right/0.25.3008.1667@0.25.3008.1667" timestamp="1610304158411" />
     <state x="0" y="178" key="MergeDialog" timestamp="1608430861312">
       <screen x="0" y="25" width="3008" height="1667" />
@@ -490,21 +490,25 @@
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="564" y="560" key="VCS.ChangeListViewerDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1610761026291" />
-    <state x="352" y="595" key="Vcs.Push.Dialog.v2" timestamp="1611792260250">
+    <state x="352" y="595" key="Vcs.Push.Dialog.v2" timestamp="1612053876941">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="225" y="427" key="Vcs.Push.Dialog.v2/0.25.1920.1175@0.25.1920.1175" timestamp="1608996219257" />
-    <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1611792260250" />
+    <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612053876941" />
     <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667@0.25.3008.1667" timestamp="1610932375295" />
     <state x="1238" y="705" width="342" height="238" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1610208883132">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="790" y="504" width="342" height="238" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.25.1920.1175@0.25.1920.1175" timestamp="1608939825230" />
     <state x="1238" y="705" width="342" height="238" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1610208883132" />
-    <state x="2101" y="636" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1610286562451">
+    <state x="2029" y="681" width="452" height="350" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1612131031922">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
-    <state x="2101" y="636" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1610286562451" />
+    <state x="2029" y="681" width="452" height="350" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612131031922" />
+    <state x="1635" y="188" width="1080" height="1204" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1612132603555">
+      <screen x="0" y="25" width="3008" height="1667" />
+    </state>
+    <state x="1635" y="188" width="1080" height="1204" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612132603555" />
     <state x="904" y="127" width="2002" height="1463" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1610907859042">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
@@ -521,11 +525,11 @@
     <state x="500" y="152" width="854" height="688" key="find.popup/0.25.1920.1175@0.25.1920.1175" timestamp="1611437383261" />
     <state x="1170" y="171" width="1337" height="976" key="find.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612047381164" />
     <state x="783" y="205" width="1337" height="976" key="find.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1610932126855" />
-    <state x="2071" y="198" width="670" height="676" key="search.everywhere.popup" timestamp="1612053273028">
+    <state x="417" y="413" width="670" height="676" key="search.everywhere.popup" timestamp="1612126860384">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="266" y="298" width="670" height="477" key="search.everywhere.popup/0.25.1920.1175@0.25.1920.1175" timestamp="1611515057098" />
     <state x="2071" y="198" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612053273028" />
-    <state x="417" y="413" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1610931602038" />
+    <state x="417" y="413" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1612126860384" />
   </component>
 </project>
