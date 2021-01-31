@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Customer;
+use App\Models\CustomerContas;
 use App\Models\File;
 use App\Models\PlanoConta;
 use App\Models\User;
@@ -48,6 +49,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::model('customer', Customer::class);
             Route::model('file', File::class);
             Route::model('pconta', PlanoConta::class);
+            Route::model('customerconta', CustomerContas::class);
 
             Route::middleware('web')
                 ->namespace($this->namespace) // Assigning namespace

@@ -23,6 +23,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         return Inertia\Inertia::render('Dashboard');
     })->name('dashboard');
 
+    /**
+     * CUSTOMER
+     */
     Route::prefix('/customers')->name('customers.')->group(function () {
         Route::get('/', 'CustomerController@show')->name('index');
         Route::get('/json', 'CustomerController@json')->name('json');
@@ -31,10 +34,23 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::delete('/{customer}', 'CustomerController@delete')->name('delete');
         Route::put('/{customer}', 'CustomerController@update')->name('update');
         Route::post('/active/{customer}', 'CustomerController@active')->name('active');
-        Route::prefix('/{customer}/config')->name('customers.')->group(function () {
-            Route::get('/', 'CustomerConfigController@config')->name('config');
-            Route::post('/readfile', 'CustomerConfigController@readfile')->name('readfile');
-            Route::post('/regcontas', 'CustomerConfigController@regcontas')->name('regcontas');
+        /**
+         * CONFIG
+         */
+        Route::prefix('/{customer}/config')->name('config.')->group(function () {
+            Route::get('/', 'CustomerConfigController@config')->name('index');
+            /**
+             * PLANO DE CONTAS CUSTOMER
+             */
+            Route::prefix('/contas')->name('contas.')->group(function () {
+                Route::post('/store', 'CustomerContasController@store')->name('store');
+                Route::post('/readfile', 'CustomerContasController@readfile')->name('readfile');
+                Route::post('/regcontas', 'CustomerContasController@regcontas')->name('regcontas');
+                Route::get('/jsoncontas', 'CustomerContasController@jsonContas')->name('jsonContas');
+                Route::put('/{customerconta}', 'CustomerContasController@update')->name('update');
+                Route::post('/active/{customerconta}', 'CustomerContasController@active')->name('active');
+                Route::delete('/{customerconta}', 'CustomerContasController@delete')->name('delete');
+            });
         });
     });
 

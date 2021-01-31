@@ -2,8 +2,9 @@
     <app-layout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                <a href="#" style="color: #20a1ff;" @click.prevent="() => backPage()">< Voltar</a>
-                | {{ $page.customer.name }} - <span style="font-size: 14px; color: #a0aec0;">Configurações</span>
+                <a href="#" style="font-size: 12px;color: #20a1ff;" @click.prevent="() => backPage()">< Voltar</a>
+                <br>
+                {{ $page.customer.name }} - <span style="font-size: 14px; color: #a0aec0;">Configurações</span>
             </h2>
         </template>
 

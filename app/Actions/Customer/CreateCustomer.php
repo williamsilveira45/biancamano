@@ -39,7 +39,7 @@ class CreateCustomer
             $this->validation();
 
             Customer::create([
-                'name' => strtoupper($this->data['nome_conta']),
+                'name' => strtoupper($this->data['name']),
                 'cnpj' => $this->data['cnpj']
             ]);
 

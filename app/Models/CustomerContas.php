@@ -8,11 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerContas extends Model
 {
     protected $table = 'customer_contas';
+
     protected $fillable = [
         'customer_id',
         'conta_id',
         'nome_csv',
         'nome_sha1',
+    ];
+
+    protected $casts = [
+        'active' => 'boolean',
     ];
 
     /**
