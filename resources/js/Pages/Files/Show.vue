@@ -40,7 +40,7 @@
                                             <jet-secondary-button @click.native="() => loadData(props.rowData)">
                                                 Editar
                                             </jet-secondary-button>
-                                            <jet-danger-button @click.native="() => deleteCustomer(props.rowData.id)">
+                                            <jet-danger-button @click.native="() => deleteFile(props.rowData.id)">
                                                 Deletar
                                             </jet-danger-button>
                                         </template>
@@ -130,6 +130,8 @@ import Vuetable from "vuetable-2";
 import VuetablePagination from "vuetable-2/src/components/VuetablePagination";
 import VuetablePaginationInfo from "vuetable-2/src/components/VuetablePaginationInfo";
 import FileInput from "@/Components/FileInput";
+import Swal from "sweetalert2";
+import Vue from "vue";
 
 export default {
     props: ['customers'],
@@ -232,6 +234,37 @@ export default {
         formatDate (value) {
             if (value === null) return '-';
             return moment(value).format('DD/MM/YYYY HH:ss');
+        },
+        deleteFile(id) {
+            Swal.fire({
+                title: 'Você tem certeza?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, deletar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete(`/files/${id}`).then(response => {
+                        const { data } = response;
+                        if (data.success === true) {
+                            Vue.$toast.success(data.message, {
+                                duration: 3000,
+                                position: 'top-right',
+                                dismissible: true,
+                            });
+                            this.refreshTable();
+                        }
+                    })
+                        .catch(error => {
+                            Vue.$toast.error(error.message, {
+                                duration: 3000,
+                                position: 'top-right',
+                                dismissible: true,
+                            });
+                        });
+                }
+            })
         },
         openModal() {
             this.modal = true;

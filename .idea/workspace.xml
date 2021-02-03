@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bbf2762e-0f68-4046-8faf-8b603169fe1a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_31_185253_add_columns_conta_id_and_conta_sha1_at_trial_data.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_31_191003_add_columns_conta_id_and_conta_sha1_at_sumarizada_vencimento.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bfba2ea9-e6e3-4c12-bacc-d4cc895c08b5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bfba2ea9-e6e3-4c12-bacc-d4cc895c08b5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Jobs/DeleteFile.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Jobs/ParseCsvFile.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/ParseCsvFile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/StoreProc_Vencimento_Summaries.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/StoreProc_Vencimento_Summaries.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Actions/File/Upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/File/Upload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FileController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel-echo-server.lock" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-echo-server.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Files/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Files/Show.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +176,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Actions/Customer/Config" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Actions/File" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -185,16 +186,16 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Actions/File" />
+      <recent name="$PROJECT_DIR$/resources/views" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Actions/File" />
       <recent name="$PROJECT_DIR$/app/Actions/Customer/Config" />
       <recent name="$PROJECT_DIR$/app/Http/Responses/Customers" />
       <recent name="$PROJECT_DIR$/resources/js/Pages/Customers" />
       <recent name="$PROJECT_DIR$/app/Actions" />
-      <recent name="$PROJECT_DIR$/resources/js/Pages" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/Actions/File" />
-      <recent name="$PROJECT_DIR$/resources/views" />
     </key>
   </component>
   <component name="RunManager">
@@ -256,7 +257,10 @@
       <workItem from="1611833535245" duration="461000" />
       <workItem from="1612011467280" duration="19126000" />
       <workItem from="1612126745865" duration="590000" />
-      <workItem from="1612127814536" duration="4780000" />
+      <workItem from="1612127814536" duration="4859000" />
+      <workItem from="1612178021222" duration="245000" />
+      <workItem from="1612351401018" duration="187000" />
+      <workItem from="1612391209827" duration="4239000" />
     </task>
     <task id="LOCAL-00001" summary="Working on crud">
       <created>1608430740482</created>
@@ -377,7 +381,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612053874968</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Parser file with contas">
+      <created>1612133303185</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1612133303185</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -402,7 +413,8 @@
     <MESSAGE value="Trabalhando nas contas" />
     <MESSAGE value="Filtrando as contas em uso" />
     <MESSAGE value="Adicionando CRUD para contas de customer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adicionando CRUD para contas de customer" />
+    <MESSAGE value="Parser file with contas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Parser file with contas" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1461" y="569" width="1071" height="720" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1612046650398">
@@ -421,25 +433,27 @@
     <state x="629" y="25" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.25.1920.1175@0.25.1920.1175" timestamp="1608995167363" />
     <state x="985" y="25" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1610208956590" />
     <state x="985" y="25" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.25.3008.1667@0.25.3008.1667" timestamp="1610306037946" />
-    <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1612053283964">
-      <screen x="0" y="25" width="3008" height="1667" />
+    <state x="417" y="528" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1612394490943">
+      <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state x="313" y="442" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.1920.1175@0.25.1920.1175" timestamp="1608915747652" />
+    <state x="417" y="528" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612394490943" />
     <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612053283964" />
     <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667@0.25.3008.1667" timestamp="1608594318510" />
-    <state x="337" y="431" key="CommitChangelistDialog2" timestamp="1612053874022">
+    <state x="337" y="431" key="CommitChangelistDialog2" timestamp="1612133302819">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="215" y="311" key="CommitChangelistDialog2/0.25.1920.1175@0.25.1920.1175" timestamp="1608996216363" />
-    <state x="337" y="431" key="CommitChangelistDialog2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612053874022" />
+    <state x="337" y="431" key="CommitChangelistDialog2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612133302819" />
     <state x="1596" y="429" key="CommitChangelistDialog2/0.25.3008.1667@0.25.3008.1667" timestamp="1610932213455" />
     <state width="254" height="195" key="DatabaseViewActions_Filter" timestamp="1608919039473">
       <screen x="0" y="25" width="1920" height="1175" />
     </state>
     <state width="254" height="195" key="DatabaseViewActions_Filter/0.25.1920.1175@0.25.1920.1175" timestamp="1608919039473" />
-    <state x="1471" y="121" width="1301" height="1463" key="DiffContextDialog" timestamp="1610761110669">
-      <screen x="0" y="25" width="3008" height="1667" />
+    <state x="1252" y="106" width="1108" height="1242" key="DiffContextDialog" timestamp="1612395308937">
+      <screen x="0" y="25" width="2560" height="1415" />
     </state>
+    <state x="1252" y="106" width="1108" height="1242" key="DiffContextDialog/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612395308937" />
     <state x="1471" y="121" width="1301" height="1463" key="DiffContextDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1610761110669" />
     <state x="540" y="534" key="FileChooserDialogImpl" timestamp="1608350409915">
       <screen x="0" y="25" width="3008" height="1667" />
@@ -486,15 +500,16 @@
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="573" y="786" key="NewPhpFileDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608677675589" />
-    <state x="564" y="560" key="VCS.ChangeListViewerDialog" timestamp="1610761026291">
-      <screen x="0" y="25" width="3008" height="1667" />
+    <state x="480" y="479" key="VCS.ChangeListViewerDialog" timestamp="1612395106424">
+      <screen x="0" y="25" width="2560" height="1415" />
     </state>
+    <state x="480" y="479" key="VCS.ChangeListViewerDialog/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612395106424" />
     <state x="564" y="560" key="VCS.ChangeListViewerDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1610761026291" />
-    <state x="352" y="595" key="Vcs.Push.Dialog.v2" timestamp="1612053876941">
+    <state x="352" y="595" key="Vcs.Push.Dialog.v2" timestamp="1612133347418">
       <screen x="0" y="25" width="3008" height="1667" />
     </state>
     <state x="225" y="427" key="Vcs.Push.Dialog.v2/0.25.1920.1175@0.25.1920.1175" timestamp="1608996219257" />
-    <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612053876941" />
+    <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612133347418" />
     <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667@0.25.3008.1667" timestamp="1610932375295" />
     <state x="1238" y="705" width="342" height="238" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1610208883132">
       <screen x="0" y="25" width="3008" height="1667" />
@@ -519,16 +534,18 @@
     </state>
     <state x="554" y="776" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608430761506" />
     <state x="554" y="776" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.3008.1667@0.25.3008.1667" timestamp="1610308017438" />
-    <state x="1170" y="171" width="1337" height="976" key="find.popup" timestamp="1612047381164">
-      <screen x="0" y="25" width="3008" height="1667" />
+    <state x="996" y="149" width="1138" height="829" key="find.popup" timestamp="1612396028222">
+      <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state x="500" y="152" width="854" height="688" key="find.popup/0.25.1920.1175@0.25.1920.1175" timestamp="1611437383261" />
+    <state x="996" y="149" width="1138" height="829" key="find.popup/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612396028222" />
     <state x="1170" y="171" width="1337" height="976" key="find.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612047381164" />
     <state x="783" y="205" width="1337" height="976" key="find.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1610932126855" />
-    <state x="417" y="413" width="670" height="676" key="search.everywhere.popup" timestamp="1612126860384">
-      <screen x="0" y="25" width="3008" height="1667" />
+    <state x="355" y="354" width="670" height="574" key="search.everywhere.popup" timestamp="1612396005399">
+      <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state x="266" y="298" width="670" height="477" key="search.everywhere.popup/0.25.1920.1175@0.25.1920.1175" timestamp="1611515057098" />
+    <state x="355" y="354" width="670" height="574" key="search.everywhere.popup/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612396005399" />
     <state x="2071" y="198" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612053273028" />
     <state x="417" y="413" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1612126860384" />
   </component>

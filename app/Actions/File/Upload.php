@@ -53,7 +53,7 @@ class Upload
                 'duration' => 7500,
             ]));
             //run import job
-            ParseCsvFile::dispatch($fileReg);
+            ParseCsvFile::dispatch($fileReg)->onQueue('long');
 
             return $this->responseSuccess('Arquivo enviado com sucesso, iniciando processo de registro dos dados...');
         } catch (Exception $exception) {

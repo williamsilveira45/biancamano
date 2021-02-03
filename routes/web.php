@@ -54,6 +54,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         });
     });
 
+    /**
+     * FILES
+     */
     Route::prefix('/files')->name('files.')->group(function () {
         Route::get('/', 'FileController@show')->name('index');
         Route::get('/json', 'FileController@json')->name('json');
