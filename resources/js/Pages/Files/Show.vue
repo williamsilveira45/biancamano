@@ -37,9 +37,6 @@
                                               @vuetable:pagination-data="onPaginationData"
                                     >
                                         <template slot="action-scope" slot-scope="props">
-                                            <jet-secondary-button @click.native="() => loadData(props.rowData)">
-                                                Editar
-                                            </jet-secondary-button>
                                             <jet-danger-button @click.native="() => deleteFile(props.rowData.id)">
                                                 Deletar
                                             </jet-danger-button>

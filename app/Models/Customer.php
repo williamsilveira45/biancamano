@@ -60,4 +60,20 @@ class Customer extends Model
     {
         return $this->hasMany(CustomerContas::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function trialData()
+    {
+        return $this->hasMany(TrialData::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function summariesVencimento()
+    {
+        return $this->hasMany(VencimentoSummary::class);
+    }
 }

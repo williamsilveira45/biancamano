@@ -172,7 +172,8 @@ class ParseCsvFile implements ShouldQueue
                     file_checksum,
                     conta_id,
                     conta_sha1,
-                    counter_id
+                    counter_id,
+                    customer_id
                     ) VALUES (
                     " . (int)$this->data[0] . ",
                     '" . $name . "',
@@ -198,7 +199,8 @@ class ParseCsvFile implements ShouldQueue
                     '" . $this->file->sha1_checksum . "',
                     " . ($this->customerContas[sha1($this->data[7])] ?? 0). ",
                     '" . sha1($this->data[7]) . "',
-                    " . (int)$xCounter . ")";
+                    " . (int)$xCounter . ",
+                    " . $this->file->customer_id . ")";
 
             DB::unprepared($sql);
 
@@ -267,7 +269,8 @@ class ParseCsvFile implements ShouldQueue
                         file_checksum,
                         conta_id,
                         conta_sha1,
-                        counter_id
+                        counter_id,
+                        customer_id
                         ) VALUES (
                         " . (int)$this->data[0] . ",
                         '" . $name . "',
@@ -293,7 +296,7 @@ class ParseCsvFile implements ShouldQueue
                         " . ($this->customerContas[sha1($this->data[7])] ?? 0). ",
                         '" . sha1($this->data[7]) . "',
                         " . (int)$xCounter . "
-                        );\n";
+                        " . $this->file->customer_id . ")\n";
 
             $xCounter++;
         }

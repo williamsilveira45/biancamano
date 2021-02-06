@@ -91,4 +91,20 @@ class TrialData extends Model
     {
         return $this->belongsTo(File::class, 'file_checksum', 'sha1_checksum');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function trialData()
+    {
+        return $this->belongsTo(TrialData::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function summariesVencimento()
+    {
+        return $this->belongsTo(VencimentoSummary::class);
+    }
 }

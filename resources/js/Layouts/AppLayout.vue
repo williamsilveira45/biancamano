@@ -24,6 +24,9 @@
                             <jet-nav-link :href="route('files.index')" :active="route().current('files.index')">
                                 Arquivos
                             </jet-nav-link>
+                            <jet-nav-link :href="route('reports.index')" :active="route().current('reports.index')">
+                                Relatórios
+                            </jet-nav-link>
                         </div>
                     </div>
 

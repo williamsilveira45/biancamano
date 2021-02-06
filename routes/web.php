@@ -75,4 +75,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::put('/{pconta}', 'PlanoContasController@update')->name('update');
         });
     });
+
+    /**
+     * REPORTS
+     */
+    Route::prefix('/reports')->name('reports.')->group(function () {
+        Route::get('/', 'ReportController@show')->name('index');
+        Route::prefix('/json/{customer}')->group(function() {
+            Route::get('/{tipo}', 'ReportController@json')->name('json');
+        });
+    });
+
 });
