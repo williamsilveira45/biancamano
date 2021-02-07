@@ -13,4 +13,12 @@ class VencimentoSummary extends Model
     {
         return $this->belongsTo(File::class, 'sha1_checksum', 'file_checksum');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function contaCustomer()
+    {
+        return $this->belongsTo(PlanoConta::class, 'conta_id', 'id');
+    }
 }

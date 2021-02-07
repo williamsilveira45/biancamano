@@ -13,6 +13,7 @@ BEGIN
                                                   titulo_pago,
                                                   file_checksum,
                                                  conta_id,
+                                                 conta_sha1,
                                                  customer_id)
     SELECT DATE_FORMAT(trial_data.emissao_nota, '%Y-%m-01') AS emissao_nota,
            DATE_FORMAT(trial_data.data_vencimento_original, '%Y-%m-01') AS data_vencimento_original,
@@ -25,6 +26,7 @@ BEGIN
            trial_data.titulo_pago,
            trial_data.file_checksum,
            trial_data.conta_id,
+           trial_data.conta_sha1,
            trial_data.customer_id
     FROM trial_data
     WHERE trial_data.file_checksum COLLATE utf8mb4_general_ci = checksum_file

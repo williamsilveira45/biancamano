@@ -26,5 +26,21 @@ class PlanoConta extends Model
     {
         return $this->hasMany(CustomerContas::class, 'conta_id', 'id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function vencimentoSummaries()
+    {
+        return $this->hasMany(VencimentoSummary::class, 'conta_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function trialData()
+    {
+        return $this->hasMany(TrialData::class, 'conta_id', 'id');
+    }
 }
 

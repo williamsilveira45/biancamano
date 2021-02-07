@@ -17,3 +17,5 @@ mix.js('resources/js/app.js', 'public/js')
         require('tailwindcss'),
     ])
     .webpackConfig(require('./webpack.config'));
+
+mix.copy('resources/js/Assets/pt-br.json', 'public/assets/pt-br.json');

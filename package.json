@@ -44,6 +44,7 @@
         "v-mask": "^2.2.3",
         "vue-csv-import": "^3.3.5",
         "vue-flexmonster": "^2.8.25",
+        "vue-loading-overlay": "^3.4.2",
         "vue-select": "^3.11.2",
         "vue-simple-progress": "^1.1.1",
         "vue-toast-notification": "^0.4.0",

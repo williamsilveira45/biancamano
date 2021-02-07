@@ -7,6 +7,7 @@ use App\Helpers\TextFormatting;
 use App\Models\Customer;
 use App\Http\Traits\Actions\ModelActionBase;
 use App\Http\Traits\Actions\ResponseMessage;
+use App\Models\PlanoConta;
 use Exception;
 use http\Header;
 use Illuminate\Support\Facades\Validator;
@@ -37,21 +38,25 @@ class GetReport
     protected function main()
     {
         try {
-            $data = $this->actionRecord->summariesVencimento()->get()->toArray();
+            $data = $this->getData();
             $sctructure = [
                 'id' => [
                     'type' => 'id'
+                ],
+                'conta_sistema' => [
+                    'type' => 'string',
+                    'caption' => 'Conta Sistema',
                 ],
                 'emissao_nota' => [
                     'type' => 'string',
                     'caption' => 'Emissão da Nota',
                 ],
                 'data_vencimento_original' => [
-                    'type' => 'date string',
+                    'type' => 'date',
                     'caption' => 'Data Vencimento Org.'
                 ],
                 'competencia' => [
-                    'type' => 'date string',
+                    'type' => 'date',
                     'caption' => 'Data Competência'
                 ],
                 'natureza_financeira' => [
@@ -67,7 +72,7 @@ class GetReport
                     'caption' => 'Valor'
                 ],
                 'data_entrada' => [
-                    'type' => 'date string',
+                    'type' => 'date',
                     'caption' => 'Data Entrada'
                 ],
                 'emissora_titulo' => [
@@ -77,10 +82,11 @@ class GetReport
                 'titulo_pago' => [
                     'type' => 'string',
                     'caption' => 'Título Pago'
-                ]
+                ],
              ];
 
-            $totalData = json_encode([$data, $sctructure]);
+//            $totalData = json_encode($data);
+            $totalData = json_encode([$sctructure, $data]);
 
             $totalData = str_replace("[", "", $totalData);
             $totalData = str_replace("]", "", $totalData);
@@ -90,5 +96,21 @@ class GetReport
         } catch (Exception $e) {
             return $this->responseFailure('error', $e->getMessage());
         }
+    }
+
+    /**
+     * @return array
+     */
+    private function getData()
+    {
+        $getPlanoContas = PlanoConta::all()->pluck('nome_conta', 'id');
+        return $this->actionRecord
+            ->summariesVencimento()
+            ->get()
+            ->transform(function ($item) use ($getPlanoContas) {
+                $item->conta_sistema = $getPlanoContas[$item->conta_id] ?? 'Não associado';
+                return $item;
+            })
+            ->toArray();
     }
 }

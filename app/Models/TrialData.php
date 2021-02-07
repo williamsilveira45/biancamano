@@ -107,4 +107,12 @@ class TrialData extends Model
     {
         return $this->belongsTo(VencimentoSummary::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function contaCustomer()
+    {
+        return $this->belongsTo(PlanoConta::class, 'conta_id', 'id');
+    }
 }
