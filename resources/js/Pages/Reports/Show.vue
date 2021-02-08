@@ -12,7 +12,6 @@
                     <loading :active.sync="isLoading"
                              :can-cancel="false"
                              :is-full-page="false"></loading>
-<!--                        v-bind:ready="onReady"-->
                     <Pivot
                         ref="pivot"
                         toolbar

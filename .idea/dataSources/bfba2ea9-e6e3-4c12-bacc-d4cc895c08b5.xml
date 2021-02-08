@@ -1000,7 +1000,7 @@ SELECT|sys.sys_config:null
       <Collation>utf8mb4_unicode_ci</Collation>
     </table>
     <routine id="314" parent="4" name="SumarizarVencimento">
-      <SourceTextLength>1826</SourceTextLength>
+      <SourceTextLength>1921</SourceTextLength>
       <Definer>root@localhost</Definer>
       <RoutineKind>procedure</RoutineKind>
     </routine>

@@ -128,6 +128,9 @@
             </div>
         </div>
         <div v-show="byfile" class="mt-5">
+            <loading :active.sync="isLoading"
+                     :can-cancel="false"
+                     :is-full-page="false"></loading>
             <vue-csv-import
                 v-model="csv"
                 :url="'/customers/'+$page.customer.id+'/config/contas/readfile'"
@@ -162,7 +165,7 @@
 
                 <template slot="submit" slot-scope="{submit}">
                     <div style="margin-top: 1em;margin-bottom: 1em;">
-                        <jet-button @click.native="submit">
+                        <jet-button @click.native="isLoading = true; submit();">
                             Enviar
                         </jet-button>
                     </div>
@@ -216,6 +219,8 @@ import Vuetable from "vuetable-2";
 import VuetablePagination from "vuetable-2/src/components/VuetablePagination";
 import VuetablePaginationInfo from "vuetable-2/src/components/VuetablePaginationInfo";
 import DialogModal from "@/Jetstream/DialogModal";
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 
 export default {
@@ -240,9 +245,12 @@ export default {
         VuetablePagination,
         VuetablePaginationInfo,
         DialogModal,
+        Loading,
     },
     data() {
         return {
+            isLoading: false,
+            disableImport: false,
             csv: '',
             byfile: false,
             contas: [],
@@ -328,11 +336,21 @@ export default {
             this.byfile = !this.byfile;
         },
         read(data, type) {
+            this.isLoading = false;
             if (type === 'callback') {
+                if (data.data[0].length < 1) {
+                    this.disableImport = true;
+                    Swal.fire("Aviso", 'Não foi encontrado nenhuma informação para importar.', "warning");
+                }
+
                 this.contas = data.data[0];
             }
         },
         sendToDB() {
+            if (this.disableImport) {
+                return;
+            }
+
             let url = `/customers/${this.customer.id}/config/contas/regcontas`;
             axios.post(url, {
                 contas: this.contas,

@@ -5,20 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bbf2762e-0f68-4046-8faf-8b603169fe1a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/Assets/pt-br.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bfba2ea9-e6e3-4c12-bacc-d4cc895c08b5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bfba2ea9-e6e3-4c12-bacc-d4cc895c08b5.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Actions/Report/GetReport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/Report/GetReport.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/PlanoConta.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/PlanoConta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/TrialData.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/TrialData.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/VencimentoSummary.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/VencimentoSummary.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/StoreProc_Vencimento_Summaries.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/StoreProc_Vencimento_Summaries.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel-echo-server.lock" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-echo-server.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Customers/PlanoDeContas.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Customers/PlanoDeContas.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/Reports/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Reports/Show.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,7 +261,8 @@
       <workItem from="1612437885966" duration="1000" />
       <workItem from="1612569057180" duration="9212000" />
       <workItem from="1612649995821" duration="5948000" />
-      <workItem from="1612704332708" duration="5053000" />
+      <workItem from="1612704332708" duration="5832000" />
+      <workItem from="1612784487300" duration="2391000" />
     </task>
     <task id="LOCAL-00001" summary="Working on crud">
       <created>1608430740482</created>
@@ -412,7 +404,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612582052821</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Ajustando relatório do sistema">
+      <created>1612727817732</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1612727817732</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -440,7 +439,8 @@
     <MESSAGE value="Parser file with contas" />
     <MESSAGE value="Removing file" />
     <MESSAGE value="Criando o relatório de vencimento" />
-    <option name="LAST_COMMIT_MESSAGE" value="Criando o relatório de vencimento" />
+    <MESSAGE value="Ajustando relatório do sistema" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustando relatório do sistema" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1461" y="569" width="1071" height="720" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1612046650398">
@@ -466,10 +466,10 @@
     <state x="417" y="528" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612570032793" />
     <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612053283964" />
     <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667@0.25.3008.1667" timestamp="1608594318510" />
-    <state x="287" y="370" key="CommitChangelistDialog2" timestamp="1612582051873">
-      <screen x="0" y="25" width="2560" height="1415" />
+    <state x="215" y="311" key="CommitChangelistDialog2" timestamp="1612727816540">
+      <screen x="0" y="25" width="1920" height="1175" />
     </state>
-    <state x="215" y="311" key="CommitChangelistDialog2/0.25.1920.1175@0.25.1920.1175" timestamp="1608996216363" />
+    <state x="215" y="311" key="CommitChangelistDialog2/0.25.1920.1175@0.25.1920.1175" timestamp="1612727816540" />
     <state x="287" y="370" key="CommitChangelistDialog2/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612582051873" />
     <state x="337" y="431" key="CommitChangelistDialog2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612133302819" />
     <state x="1596" y="429" key="CommitChangelistDialog2/0.25.3008.1667@0.25.3008.1667" timestamp="1610932213455" />
@@ -537,10 +537,10 @@
     </state>
     <state x="480" y="479" key="VCS.ChangeListViewerDialog/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612395106424" />
     <state x="564" y="560" key="VCS.ChangeListViewerDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1610761026291" />
-    <state x="300" y="509" key="Vcs.Push.Dialog.v2" timestamp="1612582054226">
-      <screen x="0" y="25" width="2560" height="1415" />
+    <state x="225" y="427" key="Vcs.Push.Dialog.v2" timestamp="1612727819678">
+      <screen x="0" y="25" width="1920" height="1175" />
     </state>
-    <state x="225" y="427" key="Vcs.Push.Dialog.v2/0.25.1920.1175@0.25.1920.1175" timestamp="1608996219257" />
+    <state x="225" y="427" key="Vcs.Push.Dialog.v2/0.25.1920.1175@0.25.1920.1175" timestamp="1612727819678" />
     <state x="300" y="509" key="Vcs.Push.Dialog.v2/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612582054226" />
     <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612133347418" />
     <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667@0.25.3008.1667" timestamp="1610932375295" />
@@ -574,11 +574,11 @@
     <state x="996" y="149" width="1138" height="829" key="find.popup/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612581706510" />
     <state x="1170" y="171" width="1337" height="976" key="find.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612047381164" />
     <state x="783" y="205" width="1337" height="976" key="find.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1610932126855" />
-    <state x="266" y="298" width="670" height="477" key="search.everywhere.popup" timestamp="1612726626070">
-      <screen x="0" y="25" width="1920" height="1175" />
+    <state x="355" y="354" width="670" height="574" key="search.everywhere.popup" timestamp="1612785382592">
+      <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state x="266" y="298" width="670" height="477" key="search.everywhere.popup/0.25.1920.1175@0.25.1920.1175" timestamp="1612726626070" />
-    <state x="355" y="354" width="670" height="574" key="search.everywhere.popup/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612576335728" />
+    <state x="355" y="354" width="670" height="574" key="search.everywhere.popup/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612785382592" />
     <state x="2071" y="198" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612053273028" />
     <state x="417" y="413" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1612126860384" />
   </component>
