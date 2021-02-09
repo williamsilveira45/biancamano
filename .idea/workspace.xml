@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bbf2762e-0f68-4046-8faf-8b603169fe1a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bfba2ea9-e6e3-4c12-bacc-d4cc895c08b5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bfba2ea9-e6e3-4c12-bacc-d4cc895c08b5.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel-echo-server.lock" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-echo-server.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Customers/PlanoDeContas.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Customers/PlanoDeContas.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/Reports/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Reports/Show.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -262,7 +261,8 @@
       <workItem from="1612569057180" duration="9212000" />
       <workItem from="1612649995821" duration="5948000" />
       <workItem from="1612704332708" duration="5832000" />
-      <workItem from="1612784487300" duration="2391000" />
+      <workItem from="1612784487300" duration="2650000" />
+      <workItem from="1612907354652" duration="1982000" />
     </task>
     <task id="LOCAL-00001" summary="Working on crud">
       <created>1608430740482</created>
@@ -411,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612727817732</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Adicionado mensagem no import dos headers">
+      <created>1612787348166</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1612787348166</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -440,7 +447,8 @@
     <MESSAGE value="Removing file" />
     <MESSAGE value="Criando o relatório de vencimento" />
     <MESSAGE value="Ajustando relatório do sistema" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajustando relatório do sistema" />
+    <MESSAGE value="Adicionado mensagem no import dos headers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adicionado mensagem no import dos headers" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1461" y="569" width="1071" height="720" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1612046650398">
@@ -466,11 +474,11 @@
     <state x="417" y="528" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612570032793" />
     <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612053283964" />
     <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667@0.25.3008.1667" timestamp="1608594318510" />
-    <state x="215" y="311" key="CommitChangelistDialog2" timestamp="1612727816540">
-      <screen x="0" y="25" width="1920" height="1175" />
+    <state x="287" y="370" key="CommitChangelistDialog2" timestamp="1612787347734">
+      <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state x="215" y="311" key="CommitChangelistDialog2/0.25.1920.1175@0.25.1920.1175" timestamp="1612727816540" />
-    <state x="287" y="370" key="CommitChangelistDialog2/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612582051873" />
+    <state x="287" y="370" key="CommitChangelistDialog2/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612787347734" />
     <state x="337" y="431" key="CommitChangelistDialog2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612133302819" />
     <state x="1596" y="429" key="CommitChangelistDialog2/0.25.3008.1667@0.25.3008.1667" timestamp="1610932213455" />
     <state width="254" height="195" key="DatabaseViewActions_Filter" timestamp="1608919039473">
@@ -537,11 +545,11 @@
     </state>
     <state x="480" y="479" key="VCS.ChangeListViewerDialog/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612395106424" />
     <state x="564" y="560" key="VCS.ChangeListViewerDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1610761026291" />
-    <state x="225" y="427" key="Vcs.Push.Dialog.v2" timestamp="1612727819678">
-      <screen x="0" y="25" width="1920" height="1175" />
+    <state x="300" y="509" key="Vcs.Push.Dialog.v2" timestamp="1612787350301">
+      <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state x="225" y="427" key="Vcs.Push.Dialog.v2/0.25.1920.1175@0.25.1920.1175" timestamp="1612727819678" />
-    <state x="300" y="509" key="Vcs.Push.Dialog.v2/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612582054226" />
+    <state x="300" y="509" key="Vcs.Push.Dialog.v2/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612787350301" />
     <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612133347418" />
     <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667@0.25.3008.1667" timestamp="1610932375295" />
     <state x="1238" y="705" width="342" height="238" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1610208883132">
@@ -567,18 +575,18 @@
     </state>
     <state x="554" y="776" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608430761506" />
     <state x="554" y="776" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.3008.1667@0.25.3008.1667" timestamp="1610308017438" />
-    <state x="500" y="152" width="854" height="688" key="find.popup" timestamp="1612651495194">
-      <screen x="0" y="25" width="1920" height="1175" />
+    <state x="996" y="149" width="1138" height="829" key="find.popup" timestamp="1612910441320">
+      <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state x="500" y="152" width="854" height="688" key="find.popup/0.25.1920.1175@0.25.1920.1175" timestamp="1612651495194" />
-    <state x="996" y="149" width="1138" height="829" key="find.popup/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612581706510" />
+    <state x="996" y="149" width="1138" height="829" key="find.popup/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612910441320" />
     <state x="1170" y="171" width="1337" height="976" key="find.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612047381164" />
     <state x="783" y="205" width="1337" height="976" key="find.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1610932126855" />
-    <state x="355" y="354" width="670" height="574" key="search.everywhere.popup" timestamp="1612785382592">
+    <state x="355" y="354" width="670" height="574" key="search.everywhere.popup" timestamp="1612910293975">
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state x="266" y="298" width="670" height="477" key="search.everywhere.popup/0.25.1920.1175@0.25.1920.1175" timestamp="1612726626070" />
-    <state x="355" y="354" width="670" height="574" key="search.everywhere.popup/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612785382592" />
+    <state x="355" y="354" width="670" height="574" key="search.everywhere.popup/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612910293975" />
     <state x="2071" y="198" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612053273028" />
     <state x="417" y="413" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1612126860384" />
   </component>

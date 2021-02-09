@@ -15,6 +15,7 @@
                     <Pivot
                         ref="pivot"
                         toolbar
+                        :height="'800px'"
                         :report="{
                             localization:  '/assets/pt-br.json',
                             'dataSource': {
