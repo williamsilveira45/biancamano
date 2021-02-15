@@ -7,14 +7,90 @@
         </template>
 
         <div class="py-5">
-            <div class="w-full mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8" style="height: 900px">
-                    <loading :active.sync="isLoading"
-                             :can-cancel="false"
-                             :is-full-page="false"></loading>
+            <loading :active.sync="isLoading"
+                     :can-cancel="false"
+                     :is-full-page="false"></loading>
+            <div class="w-full mx-auto sm:px-6" style="z-index: 1000">
+                <dialog-modal :show="modal" maxWidth="6xl">
+                    <template #title>
+                        <h4>Relatório Detalhado</h4>
+                    </template>
+                    <template #content>
+                        <Pivot
+                            ref="pivot"
+                            toolbar
+                            v-bind:customizeContextMenu="rightClickMenu"
+                            :height="'800px'"
+                            :report="{
+                            localization:  '/assets/pt-br.json',
+                            'dataSource': {
+                                'type': 'json',
+                                'filename': '/reports/json/28/vencimento',
+                                'useStreamLoader': true,
+                            },
+                            'slice': {
+                                'rows': [
+                                    {
+                                        'uniqueName': 'conta_sistema'
+                                    }
+                                ],
+                                'columns': [
+                                    {
+                                        'uniqueName': 'data_vencimento_original.Year',
+                                        'caption': 'Data Venc. Ano'
+                                    },
+                                    {
+                                        'uniqueName': 'data_vencimento_original.Month',
+                                        'caption': 'Data Venc. Mês'
+                                    },
+                                    {
+                                        'uniqueName': '[Measures]'
+                                    }
+                                ],
+                                'measures': [
+                                    {
+                                        'uniqueName': 'valor',
+                                        'aggregation': 'sum',
+                                        'format': 'currency'
+                                    }
+                                ],
+                                'sorting': {
+                                    'column': {
+                                        'type': 'asc',
+                                        'tuple': [
+                                            'data_vencimento_original.year.[2016]'
+                                        ],
+                                        'measure': {
+                                            'uniqueName': 'valor',
+                                            'aggregation': 'sum'
+                                        }
+                                    }
+                                }
+                            },
+                            'formats': [
+                                {
+                                    'name': 'currency',
+                                    'thousandsSeparator': '.',
+                                    'decimalSeparator': ',',
+                                    'decimalPlaces': 2,
+                                    'currencySymbol': 'R$ '
+                                }
+                            ],
+                        }"
+                        >
+                        </Pivot>
+                    </template>
+                    <template #footer>
+                        <jet-secondary-button @click.native="closeModal">
+                            Fechar
+                        </jet-secondary-button>
+                    </template>
+                </dialog-modal>
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8" style="height: 900px;z-index: 0">
                     <Pivot
                         ref="pivot"
                         toolbar
+                        v-bind:customizeContextMenu="rightClickMenu"
                         :height="'800px'"
                         :report="{
                             localization:  '/assets/pt-br.json',
@@ -90,6 +166,8 @@ import Loading from 'vue-loading-overlay';
 import {Pivot} from "vue-flexmonster";
 import 'flexmonster/flexmonster.css';
 import 'vue-loading-overlay/dist/vue-loading.css';
+import DialogModal from "@/Jetstream/DialogModal";
+import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 
 export default {
     name: 'ReportsVencimento',
@@ -97,14 +175,37 @@ export default {
         AppLayout,
         Pivot,
         Loading,
+        DialogModal,
+        JetSecondaryButton,
     },
     data() {
         return {
             isLoading: false,
             dados: null,
+            modal: false,
         }
     },
     methods: {
+        rightClickMenu (items, data, viewType) {
+            if (data.type == "value")
+            {
+                items.push({
+                    label: "Visualizar Além dos Detalhes",
+                    handler: () => this.openDetails(data)
+                });
+            }
+            return items;
+        },
+        openDetails(data) {
+          this.openModal();
+          // this.isLoading = true;
+        },
+        openModal() {
+            this.modal = true;
+        },
+        closeModal() {
+            this.modal = false;
+        },
         onReady: function () {
             //Connect Flexmonster to the data
             axios.get('/reports/json/28/vencimento')
