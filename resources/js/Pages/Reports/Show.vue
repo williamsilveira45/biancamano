@@ -17,66 +17,12 @@
                     </template>
                     <template #content>
                         <Pivot
-                            ref="pivot"
+                            ref="pivotModal"
                             toolbar
-                            v-bind:customizeContextMenu="rightClickMenu"
                             :height="'800px'"
                             :report="{
-                            localization:  '/assets/pt-br.json',
-                            'dataSource': {
-                                'type': 'json',
-                                'filename': '/reports/json/28/vencimento',
-                                'useStreamLoader': true,
-                            },
-                            'slice': {
-                                'rows': [
-                                    {
-                                        'uniqueName': 'conta_sistema'
-                                    }
-                                ],
-                                'columns': [
-                                    {
-                                        'uniqueName': 'data_vencimento_original.Year',
-                                        'caption': 'Data Venc. Ano'
-                                    },
-                                    {
-                                        'uniqueName': 'data_vencimento_original.Month',
-                                        'caption': 'Data Venc. Mês'
-                                    },
-                                    {
-                                        'uniqueName': '[Measures]'
-                                    }
-                                ],
-                                'measures': [
-                                    {
-                                        'uniqueName': 'valor',
-                                        'aggregation': 'sum',
-                                        'format': 'currency'
-                                    }
-                                ],
-                                'sorting': {
-                                    'column': {
-                                        'type': 'asc',
-                                        'tuple': [
-                                            'data_vencimento_original.year.[2016]'
-                                        ],
-                                        'measure': {
-                                            'uniqueName': 'valor',
-                                            'aggregation': 'sum'
-                                        }
-                                    }
-                                }
-                            },
-                            'formats': [
-                                {
-                                    'name': 'currency',
-                                    'thousandsSeparator': '.',
-                                    'decimalSeparator': ',',
-                                    'decimalPlaces': 2,
-                                    'currencySymbol': 'R$ '
-                                }
-                            ],
-                        }"
+                                localization:  '/assets/pt-br.json',
+                            }"
                         >
                         </Pivot>
                     </template>
@@ -198,13 +144,31 @@ export default {
         },
         openDetails(data) {
           this.openModal();
-          // this.isLoading = true;
         },
         openModal() {
             this.modal = true;
+            let flex = this.$refs.pivotModal.flexmonster;
+            flex.clear();
+            let backFlex = this.$refs.pivot.flexmonster;
+            let detailData = backFlex.getReport();
+
+            detailData.dataSource = {
+                filename: "/reports/json/28/vencimento",
+                type: "json",
+                useStreamLoader: true,
+            };
+
+            flex.setReport(detailData);
+            flex.refresh();
+            // opcoesD.slice.drillThrough = drill;
+            // opcoesD.slice.measures = medidas;
+            // opcoesD.options.grid.title = "Visualização Detalhada";
+
+
         },
         closeModal() {
             this.modal = false;
+
         },
         onReady: function () {
             //Connect Flexmonster to the data

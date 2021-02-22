@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bbf2762e-0f68-4046-8faf-8b603169fe1a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/laravel-echo-server.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel-echo-server.lock" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-echo-server.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/Reports/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Reports/Show.vue" afterDir="false" />
     </list>
@@ -267,6 +267,8 @@
       <workItem from="1613083818922" duration="2908000" />
       <workItem from="1613092881268" duration="21000" />
       <workItem from="1613187788498" duration="4135000" />
+      <workItem from="1613389833679" duration="47000" />
+      <workItem from="1613856885126" duration="3881000" />
     </task>
     <task id="LOCAL-00001" summary="Working on crud">
       <created>1608430740482</created>
@@ -429,7 +431,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612911807543</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Criando outro flexmonster no modal">
+      <created>1613389864406</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1613389864406</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -460,7 +469,8 @@
     <MESSAGE value="Ajustando relatório do sistema" />
     <MESSAGE value="Adicionado mensagem no import dos headers" />
     <MESSAGE value="Adicionando altura na div da table" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adicionando altura na div da table" />
+    <MESSAGE value="Criando outro flexmonster no modal" />
+    <option name="LAST_COMMIT_MESSAGE" value="Criando outro flexmonster no modal" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1461" y="569" width="1071" height="720" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1612046650398">
@@ -486,11 +496,11 @@
     <state x="417" y="528" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612570032793" />
     <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612053283964" />
     <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667@0.25.3008.1667" timestamp="1608594318510" />
-    <state x="1449" y="193" key="CommitChangelistDialog2" timestamp="1612911804698">
+    <state x="1449" y="193" key="CommitChangelistDialog2" timestamp="1613389863140">
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state x="215" y="311" key="CommitChangelistDialog2/0.25.1920.1175@0.25.1920.1175" timestamp="1612727816540" />
-    <state x="1449" y="193" key="CommitChangelistDialog2/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612911804698" />
+    <state x="1449" y="193" key="CommitChangelistDialog2/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1613389863140" />
     <state x="337" y="431" key="CommitChangelistDialog2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612133302819" />
     <state x="1596" y="429" key="CommitChangelistDialog2/0.25.3008.1667@0.25.3008.1667" timestamp="1610932213455" />
     <state width="254" height="195" key="DatabaseViewActions_Filter" timestamp="1608919039473">
@@ -557,11 +567,11 @@
     </state>
     <state x="480" y="479" key="VCS.ChangeListViewerDialog/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612395106424" />
     <state x="564" y="560" key="VCS.ChangeListViewerDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1610761026291" />
-    <state x="300" y="509" key="Vcs.Push.Dialog.v2" timestamp="1612911815387">
+    <state x="300" y="509" key="Vcs.Push.Dialog.v2" timestamp="1613389868726">
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state x="225" y="427" key="Vcs.Push.Dialog.v2/0.25.1920.1175@0.25.1920.1175" timestamp="1612727819678" />
-    <state x="300" y="509" key="Vcs.Push.Dialog.v2/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612911815387" />
+    <state x="300" y="509" key="Vcs.Push.Dialog.v2/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1613389868726" />
     <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612133347418" />
     <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667@0.25.3008.1667" timestamp="1610932375295" />
     <state x="1238" y="705" width="342" height="238" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1610208883132">
