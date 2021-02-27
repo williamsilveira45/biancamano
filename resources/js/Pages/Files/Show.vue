@@ -73,7 +73,7 @@
                 </div>
             </div>
         </div>
-        <dialog-modal :show="modal" maxWidth="6xl">
+        <dialog-modal @close="closeModal" :show="modal" maxWidth="6xl">
             <template #title>
                 <h4 v-html="edit ? 'Editar Arquivo' : 'Novo Arquivo'"></h4>
             </template>

@@ -66,7 +66,8 @@
         created() {
             const closeOnEscape = (e) => {
                 if (e.key === 'Escape' && this.show) {
-                    this.close()
+                    console.log('close 1');
+                    this.close();
                 }
             }
 

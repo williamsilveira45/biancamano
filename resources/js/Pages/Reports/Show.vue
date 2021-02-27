@@ -11,7 +11,7 @@
                      :can-cancel="false"
                      :is-full-page="false"></loading>
             <div class="w-full mx-auto sm:px-6" style="z-index: 1000">
-                <dialog-modal :show="modal" maxWidth="6xl">
+                <dialog-modal :show="modal" @close="closeModal" maxWidth="6xl">
                     <template #title>
                         <h4>Relatório Detalhado</h4>
                     </template>

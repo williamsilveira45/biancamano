@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        <dialog-modal :show="modal">
+        <dialog-modal @close="closeModal" :show="modal">
             <template #title>
                 <h4 v-html="edit ? 'Editar Conta' : 'Novo Conta'"></h4>
             </template>
