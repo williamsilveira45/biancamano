@@ -5,15 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bbf2762e-0f68-4046-8faf-8b603169fe1a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/laravel-echo-server.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Components/Avatar.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Reports/Report.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Pages/Reports/Reports.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel-echo-server.lock" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-echo-server.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Jetstream/Modal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Jetstream/Modal.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Customers/PlanoDeContas.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Customers/PlanoDeContas.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Customers/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Customers/Show.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Files/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Files/Show.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Pages/PlanoContas/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/PlanoContas/Show.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/Reports/Show.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Reports/Show.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,16 +187,16 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/Actions/File" />
-      <recent name="$PROJECT_DIR$/resources/views" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/js/Pages/Reports" />
       <recent name="$PROJECT_DIR$/app/Actions/File" />
       <recent name="$PROJECT_DIR$/app/Actions/Customer/Config" />
       <recent name="$PROJECT_DIR$/app/Http/Responses/Customers" />
       <recent name="$PROJECT_DIR$/resources/js/Pages/Customers" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Actions/File" />
+      <recent name="$PROJECT_DIR$/resources/views" />
     </key>
   </component>
   <component name="RunManager">
@@ -275,7 +275,8 @@
       <workItem from="1613389833679" duration="47000" />
       <workItem from="1613856885126" duration="3881000" />
       <workItem from="1613999549489" duration="501000" />
-      <workItem from="1614381835308" duration="3291000" />
+      <workItem from="1614381835308" duration="3329000" />
+      <workItem from="1614453706845" duration="10745000" />
     </task>
     <task id="LOCAL-00001" summary="Working on crud">
       <created>1608430740482</created>
@@ -452,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613999689170</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Aplicando o ESC para fechar o modal">
+      <created>1614389686875</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1614389686875</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -460,7 +468,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Working on crud" />
     <MESSAGE value="Working on crud - Create and list customers" />
     <MESSAGE value="Files" />
     <MESSAGE value="Working with componente vue table" />
@@ -485,7 +492,8 @@
     <MESSAGE value="Adicionando altura na div da table" />
     <MESSAGE value="Criando outro flexmonster no modal" />
     <MESSAGE value="Atualizando modal com a nova tabela" />
-    <option name="LAST_COMMIT_MESSAGE" value="Atualizando modal com a nova tabela" />
+    <MESSAGE value="Aplicando o ESC para fechar o modal" />
+    <option name="LAST_COMMIT_MESSAGE" value="Aplicando o ESC para fechar o modal" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1461" y="569" width="1071" height="720" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1612046650398">
@@ -511,11 +519,11 @@
     <state x="417" y="528" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612570032793" />
     <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612053283964" />
     <state x="490" y="617" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.25.3008.1667@0.25.3008.1667" timestamp="1608594318510" />
-    <state x="1449" y="193" key="CommitChangelistDialog2" timestamp="1613999688087">
+    <state x="1449" y="193" key="CommitChangelistDialog2" timestamp="1614389685819">
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state x="215" y="311" key="CommitChangelistDialog2/0.25.1920.1175@0.25.1920.1175" timestamp="1612727816540" />
-    <state x="1449" y="193" key="CommitChangelistDialog2/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1613999688087" />
+    <state x="1449" y="193" key="CommitChangelistDialog2/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1614389685819" />
     <state x="337" y="431" key="CommitChangelistDialog2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612133302819" />
     <state x="1596" y="429" key="CommitChangelistDialog2/0.25.3008.1667@0.25.3008.1667" timestamp="1610932213455" />
     <state width="254" height="195" key="DatabaseViewActions_Filter" timestamp="1608919039473">
@@ -582,11 +590,11 @@
     </state>
     <state x="480" y="479" key="VCS.ChangeListViewerDialog/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1612395106424" />
     <state x="564" y="560" key="VCS.ChangeListViewerDialog/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1610761026291" />
-    <state x="300" y="509" key="Vcs.Push.Dialog.v2" timestamp="1613999691172">
+    <state x="300" y="509" key="Vcs.Push.Dialog.v2" timestamp="1614389688376">
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state x="225" y="427" key="Vcs.Push.Dialog.v2/0.25.1920.1175@0.25.1920.1175" timestamp="1612727819678" />
-    <state x="300" y="509" key="Vcs.Push.Dialog.v2/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1613999691172" />
+    <state x="300" y="509" key="Vcs.Push.Dialog.v2/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1614389688376" />
     <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612133347418" />
     <state x="352" y="595" key="Vcs.Push.Dialog.v2/0.25.3008.1667@0.25.3008.1667" timestamp="1610932375295" />
     <state x="1238" y="705" width="342" height="238" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1610208883132">
@@ -612,18 +620,20 @@
     </state>
     <state x="554" y="776" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1608430761506" />
     <state x="554" y="776" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.3008.1667@0.25.3008.1667" timestamp="1610308017438" />
-    <state x="996" y="149" width="1138" height="829" key="find.popup" timestamp="1614388380713">
+    <state x="996" y="149" width="1138" height="829" key="find.popup" timestamp="1614479792610">
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state x="500" y="152" width="854" height="688" key="find.popup/0.25.1920.1175@0.25.1920.1175" timestamp="1612651495194" />
     <state x="996" y="149" width="1138" height="829" key="find.popup/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1614388380713" />
+    <state x="996" y="149" width="1138" height="829" key="find.popup/0.25.2560.1415@0.25.2560.1415" timestamp="1614479792610" />
     <state x="1170" y="171" width="1337" height="976" key="find.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612047381164" />
     <state x="783" y="205" width="1337" height="976" key="find.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1610932126855" />
-    <state x="355" y="354" width="670" height="574" key="search.everywhere.popup" timestamp="1613084080776">
+    <state x="355" y="354" width="670" height="574" key="search.everywhere.popup" timestamp="1614466147024">
       <screen x="0" y="25" width="2560" height="1415" />
     </state>
     <state x="266" y="298" width="670" height="477" key="search.everywhere.popup/0.25.1920.1175@0.25.1920.1175" timestamp="1612726626070" />
-    <state x="355" y="354" width="670" height="574" key="search.everywhere.popup/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1613084080776" />
+    <state x="355" y="354" width="670" height="574" key="search.everywhere.popup/0.25.2560.1415/-1680.25.1680.1025@0.25.2560.1415" timestamp="1614454866623" />
+    <state x="355" y="354" width="670" height="574" key="search.everywhere.popup/0.25.2560.1415@0.25.2560.1415" timestamp="1614466147024" />
     <state x="2071" y="198" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667/-1920.122.1920.1175@0.25.3008.1667" timestamp="1612053273028" />
     <state x="417" y="413" width="670" height="676" key="search.everywhere.popup/0.25.3008.1667@0.25.3008.1667" timestamp="1612126860384" />
   </component>

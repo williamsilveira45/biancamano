@@ -81,8 +81,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      */
     Route::prefix('/reports')->name('reports.')->group(function () {
         Route::get('/', 'ReportController@show')->name('index');
-        Route::prefix('/json/{customer}')->group(function() {
-            Route::get('/{tipo}', 'ReportController@json')->name('json');
+        Route::prefix('/{customer}')->group(function() {
+            Route::get('/', 'ReportController@reportType')->name('reportType');
+            Route::get('/{tipo}', 'ReportController@report')->name('report');
+            Route::get('/{tipo}/json', 'ReportController@json')->name('json');
         });
     });
 

@@ -14,7 +14,28 @@ class ReportController extends Controller
      */
     public function show()
     {
-        return Inertia::render('Reports/Show');
+        $customers = Customer::pluck('name', 'id');
+        return Inertia::render('Reports/Show', ['customers' => $customers]);
+    }
+
+    /**
+     * @param Customer $customer
+     * @return \Inertia\Response
+     */
+    public function reportType(Customer $customer) {
+        return Inertia::render('Reports/Reports', ['customer' => $customer]);
+    }
+
+    /**
+     * @param Customer $customer
+     * @param Request $request
+     * @return \Inertia\Response
+     */
+    public function report(Customer $customer, Request $request) {
+        return Inertia::render('Reports/Report', [
+            'customer' => $customer,
+            'tipo' => $request->route('tipo'),
+        ]);
     }
 
     /**
