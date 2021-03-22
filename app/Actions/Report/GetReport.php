@@ -40,7 +40,7 @@ class GetReport
         try {
             $data = $this->getData();
             $sctructure = [
-                'id' => [
+                'conta_id' => [
                     'type' => 'id'
                 ],
                 'conta_sistema' => [
@@ -85,7 +85,6 @@ class GetReport
                 ],
              ];
 
-//            $totalData = json_encode($data);
             $totalData = json_encode([$sctructure, $data]);
 
             $totalData = str_replace("[", "", $totalData);

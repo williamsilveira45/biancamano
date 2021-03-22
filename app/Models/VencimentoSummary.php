@@ -4,8 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class VencimentoSummary
+ * @package App\Models
+ * @method checksum(string $checksum)
+ */
 class VencimentoSummary extends Model
 {
+    /**
+     * @param $query
+     * @param string $checksum
+     * @return mixed
+     */
+    public function scopeChecksum($query, $checksum)
+    {
+        return $query->where('file_checksum', $checksum);
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

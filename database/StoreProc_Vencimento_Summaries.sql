@@ -30,5 +30,18 @@ BEGIN
            trial_data.customer_id
     FROM trial_data
     WHERE trial_data.file_checksum COLLATE utf8mb4_general_ci = checksum_file
-    GROUP BY trial_data.emissao_nota, trial_data.data_vencimento_original, trial_data.competencia, trial_data.natureza_financeira, trial_data.operacao, trial_data.data_entrada, trial_data.emissora_titulo, trial_data.titulo_pago, trial_data.file_checksum, trial_data.conta_id, customer_id;
+    GROUP BY
+             trial_data.emissao_nota,
+             trial_data.data_vencimento_original,
+             trial_data.competencia,
+             trial_data.natureza_financeira,
+             trial_data.operacao,
+             trial_data.data_entrada,
+             trial_data.emissora_titulo,
+             trial_data.titulo_pago,
+             trial_data.file_checksum,
+             trial_data.conta_id,
+             trial_data.conta_sha1,
+             trial_data.customer_id;
 END;
+

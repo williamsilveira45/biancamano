@@ -125,9 +125,6 @@ export default {
         DialogModal,
         JetSecondaryButton,
     },
-    mounted() {
-        console.log(this.customer);
-    },
     data() {
         return {
             isLoading: false,
@@ -147,6 +144,8 @@ export default {
             return items;
         },
         openDetails(data) {
+            // console.log(data, this.$refs.pivotModal.flexmonster.getReportFilters());
+            // return;
             this.openModal();
         },
         openModal() {
@@ -174,7 +173,6 @@ export default {
             axios.get(`/reports/${this.customer.id}/${this.tipo}/json`)
                 .then((response) => {
                     this.dados = response.data;
-                    // this.$refs.pivot.flexmonster.updateData({ data: response.data });
                     this.isLoading = false;
                 })
                 .catch((error) => {
