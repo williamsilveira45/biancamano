@@ -170,7 +170,7 @@ export default {
         },
         onReady: function () {
             //Connect Flexmonster to the data
-            axios.get(`/reports/${this.customer.id}/${this.tipo}/json`)
+            axios.get(`/reports/${this.customer.id}/${this.relatorio}/${this.tipo}/json`)
                 .then((response) => {
                     this.dados = response.data;
                     this.isLoading = false;

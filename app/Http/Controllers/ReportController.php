@@ -34,6 +34,7 @@ class ReportController extends Controller
     public function report(Customer $customer, Request $request) {
         return Inertia::render('Reports/Report', [
             'customer' => $customer,
+            'relatorio' => $request->route('relatorio'),
             'tipo' => $request->route('tipo'),
         ]);
     }

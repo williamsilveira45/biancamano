@@ -6,8 +6,6 @@ set_time_limit(0);
 use App\Events\SendNotification;
 use App\Models\Customer;
 use App\Models\File;
-use App\Models\TrialData;
-use App\Models\VencimentoSummary;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -18,7 +16,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
 class ParseCsvFile implements ShouldQueue
@@ -180,11 +177,7 @@ class ParseCsvFile implements ShouldQueue
                     conta_id,
                     conta_sha1,
                     counter_id,
-                    customer_id,
-                    formatted_emissao_nota,
-                    formatted_data_vencimento_original,
-                    formatted_competencia,
-                    formatted_data_entrada
+                    customer_id
                     ) VALUES (
                     " . (int)$this->data[0] . ",
                     '" . $name . "',
@@ -211,11 +204,7 @@ class ParseCsvFile implements ShouldQueue
                     " . ($this->customerContas[sha1($this->data[7])] ?? 0). ",
                     '" . sha1($this->data[7]) . "',
                     " . (int)$xCounter . ",
-                    " . $this->file->customer_id . ",
-                    '" . (new Carbon($this->data[3]))->firstOfMonth()->toDateString() . "',
-                    '" . (new Carbon($this->data[4]))->firstOfMonth()->toDateString() . "',
-                    '" . (new Carbon($this->data[6]))->firstOfMonth()->toDateString() . "',
-                    '" . (new Carbon($this->data[15]))->firstOfMonth()->toDateString() . "')";
+                    " . $this->file->customer_id . ")";
 
             DB::unprepared($sql);
 
@@ -228,8 +217,6 @@ class ParseCsvFile implements ShouldQueue
         }
 
         DB::select(DB::raw('call SumarizarVencimento("' . $this->file->sha1_checksum . '")'));
-
-        $this->createRelationDB();
 
         DB::commit();
         $this->updateFileStatus('Processado');
@@ -295,11 +282,7 @@ class ParseCsvFile implements ShouldQueue
                         conta_id,
                         conta_sha1,
                         counter_id,
-                        customer_id,
-                        formatted_emissao_nota,
-                        formatted_data_vencimento_original,
-                        formatted_competencia,
-                        formatted_data_entrada
+                        customer_id
                         ) VALUES (
                         " . (int)$this->data[0] . ",
                         '" . $name . "',
@@ -326,11 +309,7 @@ class ParseCsvFile implements ShouldQueue
                         " . ($this->customerContas[sha1($this->data[7])] ?? 0). ",
                         '" . sha1($this->data[7]) . "',
                         " . (int)$xCounter . ",
-                        " . $this->file->customer_id . ",
-                        '" . (new Carbon($this->data[3]))->firstOfMonth()->toDateString() . "',
-                        '" . (new Carbon($this->data[4]))->firstOfMonth()->toDateString() . "',
-                        '" . (new Carbon($this->data[6]))->firstOfMonth()->toDateString() . "',
-                        '" . (new Carbon($this->data[15]))->firstOfMonth()->toDateString() . "');\n";
+                        " . $this->file->customer_id . ");\n";
 
             $xCounter++;
         }
@@ -343,7 +322,6 @@ class ParseCsvFile implements ShouldQueue
         $filePath = storage_path('app/public/'.$path);
         $command = 'mysql -h ' . env('DB_HOST') . ' -u ' . env('DB_USERNAME') . ' -p\'' . env('DB_PASSWORD') . '\' -D ' . env('DB_DATABASE') . ' < ' . $filePath;
         $this->execMysqlCommand($command);
-        $this->createRelationSQL();
 
         $this->updateFileStatus('Processado');
         broadcast(new SendNotification([
@@ -373,94 +351,6 @@ class ParseCsvFile implements ShouldQueue
         $this->file->update([
             'status' => $status,
         ]);
-    }
-
-    private function createRelationDB()
-    {
-        $summary = VencimentoSummary::select(
-            'id',
-            'emissao_nota',
-            'data_vencimento_original',
-            'competencia',
-            'natureza_financeira',
-            'operacao',
-            'data_entrada',
-            'emissora_titulo',
-            'titulo_pago',
-            'file_checksum',
-            'conta_id',
-            'conta_sha1',
-            'customer_id'
-        )
-        ->checksum($this->file->sha1_checksum)
-        ->get();
-
-        /** @var VencimentoSummary $item */
-        foreach ($summary as $item) {
-            TrialData::where('formatted_emissao_nota', $item->emissao_nota)
-                ->where('formatted_data_vencimento_original', $item->data_vencimento_original)
-                ->where('formatted_competencia', $item->competencia)
-                ->where('natureza_financeira', $item->natureza_financeira)
-                ->where('operacao', $item->operacao)
-                ->where('formatted_data_entrada', $item->data_entrada)
-                ->where('emissora_titulo', $item->emissora_titulo)
-                ->where('titulo_pago', $item->titulo_pago)
-                ->where('file_checksum', $item->file_checksum)
-                ->where('conta_id', $item->conta_id)
-                ->where('conta_sha1', $item->conta_sha1)
-                ->where('customer_id', $item->customer_id)
-                ->update([
-                   'id_summary_vencimento' => $item->id
-                ]);
-        }
-    }
-
-    private function createRelationSQL()
-    {
-        $summary = VencimentoSummary::select(
-            'id',
-            'emissao_nota',
-            'data_vencimento_original',
-            'competencia',
-            'natureza_financeira',
-            'operacao',
-            'data_entrada',
-            'emissora_titulo',
-            'titulo_pago',
-            'file_checksum',
-            'conta_id',
-            'conta_sha1',
-            'customer_id'
-        )
-            ->checksum($this->file->sha1_checksum)
-            ->get();
-
-        $sql = "";
-        /** @var VencimentoSummary $item */
-        foreach ($summary as $item) {
-            $sql .= "UPDATE trial_data SET id_summary_vencimento = " . $item->id . "
-                WHERE
-                formatted_emissao_nota = '" . $item->emissao_nota . "'
-                AND formatted_data_vencimento_original = '" . $item->data_vencimento_original . "'
-                AND formatted_competencia = '" . $item->competencia . "'
-                AND natureza_financeira = '" . $item->natureza_financeira . "'
-                AND operacao = '" . $item->operacao . "'
-                AND formatted_data_entrada = '" . $item->data_entrada . "'
-                AND emissora_titulo = '" . $item->emissora_titulo . "'
-                AND titulo_pago = '" . $item->titulo_pago . "'
-                AND file_checksum = '" . $item->file_checksum . "'
-                AND conta_id = " . $item->conta_id . "
-                AND conta_sha1 = '". $item->conta_sha1 . "'
-                AND customer_id = " . $item->customer_id . ";\n";
-        }
-
-        $filename = Str::slug(explode('.', $this->file->name)[0].'-vencimento-relation');
-        $path = env('UPLOAD_PATH').'/'.$this->file->customer->hash.'/sqls/'.$filename.'.sql';
-        Storage::put($path, $sql);
-        $filePath = storage_path('app/public/'.$path);
-        $command = 'mysql -h ' . env('DB_HOST') . ' -u ' . env('DB_USERNAME') . ' -p\'' . env('DB_PASSWORD') . '\' -D ' . env('DB_DATABASE') . ' < ' . $filePath;
-
-        $this->execMysqlCommand($command);
     }
 
     /**

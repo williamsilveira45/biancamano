@@ -27,6 +27,7 @@ class GetReport
     protected function setParameters(array $data): void
     {
         $this->data = [
+            'relatorio' => $data['relatorio'] ?? 'despesas',
             'tipo' => $data['tipo'] ?? 'vencimento',
         ];
     }
