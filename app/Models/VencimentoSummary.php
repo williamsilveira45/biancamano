@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class VencimentoSummary
  * @package App\Models
  * @method checksum(string $checksum)
+ * @method ano(int $ano)
  */
 class VencimentoSummary extends Model
 {
@@ -19,6 +20,16 @@ class VencimentoSummary extends Model
     public function scopeChecksum($query, $checksum)
     {
         return $query->where('file_checksum', $checksum);
+    }
+
+    /**
+     * @param $query
+     * @param $ano
+     * @return mixed
+     */
+    public function scopeAno($query, $ano)
+    {
+        return $query->whereRaw('YEAR(data_vencimento_original) = ' . $ano);
     }
 
     /**

@@ -29,6 +29,7 @@ class GetReport
         $this->data = [
             'relatorio' => $data['relatorio'] ?? 'despesas',
             'tipo' => $data['tipo'] ?? 'vencimento',
+            'year' => $data['year'] ?? date('Y'),
         ];
     }
 
@@ -106,6 +107,7 @@ class GetReport
         $getPlanoContas = PlanoConta::all()->pluck('nome_conta', 'id');
         return $this->actionRecord
             ->summariesVencimento()
+            ->ano($this->data['year'])
             ->get()
             ->transform(function ($item) use ($getPlanoContas) {
                 $item->conta_sistema = $getPlanoContas[$item->conta_id] ?? 'Não associado';

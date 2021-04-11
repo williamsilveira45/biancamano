@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\Report\GetReport;
 use App\Models\Customer;
+use App\Models\VencimentoSummary;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -32,10 +33,26 @@ class ReportController extends Controller
      * @return \Inertia\Response
      */
     public function report(Customer $customer, Request $request) {
+        $relatorio = $request->route('relatorio');
+        $tipo = $request->route('tipo');
+
+        if ($relatorio === 'receitas') {
+            switch ($tipo) {
+                case 'vencimento':
+                    $years = VencimentoSummary::query()
+                        ->selectRaw('YEAR(data_vencimento_original) as years')
+                        ->groupByRaw('YEAR(data_vencimento_original)')
+                        ->pluck('years');
+                    break;
+            }
+        }
+
         return Inertia::render('Reports/Report', [
             'customer' => $customer,
-            'relatorio' => $request->route('relatorio'),
-            'tipo' => $request->route('tipo'),
+            'relatorio' => $relatorio,
+            'tipo' => $tipo,
+            'license' => env('FLEXMONSTER_LICENSE'),
+            'years' => $years->toArray()
         ]);
     }
 
@@ -47,6 +64,11 @@ class ReportController extends Controller
      */
     public function json(Request $request, Customer $customer)
     {
-        return (new GetReport())->execute($customer);
+        $year = $request->route('year') ?? date('Y');
+        return (new GetReport())->execute($customer, [
+            'relatorio' => $request->route('relatorio'),
+            'tipo' => $request->route('tipo'),
+            'year' => $year
+        ]);
     }
 }

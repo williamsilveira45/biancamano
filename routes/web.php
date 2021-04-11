@@ -86,7 +86,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::prefix('/{relatorio}')->name('report.')->group(function () {
                 Route::prefix('/{tipo}')->name('tipo.')->group(function () {
                     Route::get('/', 'ReportController@report')->name('report');
-                    Route::get('/json', 'ReportController@json')->name('json');
+                    Route::get('/json/{year?}', 'ReportController@json')->name('json');
                 });
             });
         });
