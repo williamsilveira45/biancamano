@@ -68,7 +68,10 @@ class ReportController extends Controller
         return (new GetReport())->execute($customer, [
             'relatorio' => $request->route('relatorio'),
             'tipo' => $request->route('tipo'),
-            'year' => $year
+            'year' => $year,
+            'anoConta' => $request->input('Ano'),
+            'month' => $request->input('Mes'),
+            'accounts' => $request->input('contas')
         ]);
     }
 }

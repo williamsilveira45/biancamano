@@ -143,7 +143,8 @@ import 'flexmonster/flexmonster.css';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import DialogModal from "@/Jetstream/DialogModal";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
-import JetButton from '@/Jetstream/Button'
+import JetButton from '@/Jetstream/Button';
+import {$,jQuery} from 'jquery';
 
 export default {
     name: 'ReportsVencimento',
@@ -163,6 +164,7 @@ export default {
             modal: false,
             yearModal: false,
             year: null,
+            modalItens: {}
         }
     },
     beforeMount() {
@@ -196,9 +198,38 @@ export default {
             }
             return items;
         },
+        //funcao in array similar a do php
+        inArray(needle, haystack)
+        {
+            var length = haystack.length;
+            for (var i = 0; i < length; i++) {
+                if (haystack[i] == needle)
+                    return true;
+            }
+            return false;
+        },
         openDetails(data) {
-            // console.log(data, this.$refs.pivotModal.flexmonster.getReportFilters());
-            // return;
+            if (!data.recordId) {
+                return;
+            }
+
+            var docs = data.recordId;
+            var idConta = [];
+            var x = 0;
+            for (var i = 0; i < docs.length; i++)
+            {
+                if (!this.inArray(docs[i].idConta, idConta))
+                {
+                    idConta[x] = docs[i].idConta;
+                    x++;
+                }
+            }
+            this.modalItens = {
+                "Ano": docs[0].ano,
+                "Mes": docs[0].mes,
+                "contas": idConta
+            };
+
             this.openModal();
         },
         openModal() {
@@ -208,8 +239,10 @@ export default {
             let backFlex = this.$refs.pivot.flexmonster;
             let detailData = backFlex.getReport();
 
+            let params = new URLSearchParams(this.modalItens).toString();
+
             detailData.dataSource = {
-                filename: `/reports/${this.customer.id}/${this.relatorio}/${this.tipo}/json`,
+                filename: `/reports/${this.customer.id}/${this.relatorio}/${this.tipo}/json?`+params,
                 type: "json",
                 useStreamLoader: true,
             };

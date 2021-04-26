@@ -85,6 +85,36 @@ class TrialData extends Model
     ];
 
     /**
+     * @param $query
+     * @param $ano
+     * @return mixed
+     */
+    public function scopeAno($query, $ano)
+    {
+        return $query->whereRaw('YEAR(data_vencimento_original) = ' . $ano);
+    }
+
+    /**
+     * @param $query
+     * @param $mes
+     * @return mixed
+     */
+    public function scopeMonth($query, $mes)
+    {
+        return $query->whereRaw('MONTH(data_vencimento_original) = ' . $mes);
+    }
+
+    /**
+     * @param $query
+     * @param $contas
+     * @return mixed
+     */
+    public function scopeContasFilter($query, $contas)
+    {
+        return $query->whereIn('conta_id', $contas);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function file()

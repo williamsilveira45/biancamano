@@ -12,6 +12,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class VencimentoSummary extends Model
 {
+    protected $casts = [
+        'emissao_nota' => 'date',
+        'data_vencimento_original' => 'date',
+        'competencia' => 'date',
+    ];
+
     /**
      * @param $query
      * @param string $checksum
@@ -30,6 +36,16 @@ class VencimentoSummary extends Model
     public function scopeAno($query, $ano)
     {
         return $query->whereRaw('YEAR(data_vencimento_original) = ' . $ano);
+    }
+
+    /**
+     * @param $query
+     * @param $mes
+     * @return mixed
+     */
+    public function scopeMonth($query, $mes)
+    {
+        return $query->whereRaw('MONTH(data_vencimento_original) = ' . $mes);
     }
 
     /**
